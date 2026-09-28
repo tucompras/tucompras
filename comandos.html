@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generador profesional de comandos GPS BoxTrack">
+    <title>Comandos GPS | CRM</title>
+
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/comandos.css?v=1">
+    <link rel="stylesheet" href="./css/responsive.css">
+</head>
+
+<body>
+<div id="app" class="app">
+
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand">
+                <img src="./assets/img/logo-tucompras-icon.png" alt="Tu Compras" class="brand-logo">
+            </div>
+            <span>Gestión</span>
+        </div>
+
+        <nav class="sidebar-nav" id="sidebarNav">
+            <a href="./dashboard.html" id="dashboardMenuItem" class="nav-item">
+                <span>▦</span> Dashboard
+            </a>
+
+            <a href="./clientes.html" id="clientsMenuItem" class="nav-item">
+                <span>♙</span> Clientes
+            </a>
+
+            <a href="./gestiones.html" id="gestionesMenuItem" class="nav-item">
+                <span>✓</span> Gestiones
+            </a>
+
+            <a href="./tickets.html" id="ticketsMenuItem" class="nav-item">
+                <span>⚑</span> Tickets
+            </a>
+
+            <a href="#" id="ventasMenuItem" class="nav-item" data-coming-soon="Ventas">
+                <span>$</span> Ventas
+            </a>
+
+            <a href="#" id="seguimientosMenuItem" class="nav-item" data-coming-soon="Seguimientos">
+                <span>◷</span> Seguimientos
+            </a>
+
+            <a href="#" id="reportesMenuItem" class="nav-item" data-coming-soon="Reportes">
+                <span>▥</span> Reportes
+            </a>
+
+            <a href="./comandos.html" id="comandosMenuItem" class="nav-item active">
+                <span>⌘</span> Comandos
+            </a>
+
+            <a href="./usuarios.html" id="usersMenuItem" class="nav-item">
+                <span>⚙️</span> Usuarios
+            </a>
+
+            <a href="#" id="chatMenuItem" class="nav-item" data-coming-soon="Chat">
+                <span>💬</span> Chat
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button id="logoutButton" class="logout-button">Cerrar sesión</button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">Herramientas técnicas</p>
+                <h1>Generador de comandos</h1>
+                <p class="page-subtitle">Comandos GPS BoxTrack, plataformas, APN, alertas y diagnóstico.</p>
+            </div>
+
+            <div class="user-area">
+                <div class="user-info">
+                    <strong id="userName">Usuario</strong>
+                    <span id="userRole">Cargando...</span>
+                </div>
+                <div id="userAvatar" class="user-avatar">U</div>
+            </div>
+        </header>
+
+        <section class="commands-content">
+
+            <div id="pageMessage" class="page-message hidden" role="status"></div>
+
+            <div class="command-hero">
+                <div>
+                    <p class="eyebrow">Asistencia técnica</p>
+                    <h2>Genera el comando exacto antes de enviarlo al cliente.</h2>
+                    <p>Selecciona el equipo, la función y los parámetros. El sistema valida la información básica, muestra compatibilidad y prepara el comando listo para copiar.</p>
+                </div>
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    Base BoxTrack
+                </div>
+            </div>
+
+            <div class="command-layout">
+
+                <section class="command-builder panel">
+                    <div class="panel-header">
+                        <div>
+                            <p class="eyebrow">Configuración</p>
+                            <h3>Construir comando</h3>
+                        </div>
+                        <span class="step-badge">PASO A PASO</span>
+                    </div>
+
+                    <div class="builder-body">
+
+                        <div class="form-group">
+                            <label for="deviceSelect">1. Dispositivo *</label>
+                            <select id="deviceSelect">
+                                <option value="">Seleccionar dispositivo</option>
+                                <option value="sp">BoxTrack SP</option>
+                                <option value="control">BoxTrack con control</option>
+                                <option value="sin_control">BoxTrack sin control</option>
+                                <option value="4_cables">BoxTrack 4 cables</option>
+                            </select>
+                            <small class="field-help">El sistema usará este dato para advertirte cuando una función tenga una limitación documentada.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="categorySelect">2. Categoría *</label>
+                            <select id="categorySelect">
+                                <option value="">Seleccionar categoría</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="functionSearch">3. Buscar función</label>
+                            <input id="functionSearch" type="search" placeholder="Ej. ubicación, APN, micrófono, IP..." autocomplete="off">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="commandSelect">4. Función *</label>
+                            <select id="commandSelect">
+                                <option value="">Seleccionar función</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="devicePassword">Contraseña actual del GPS</label>
+                            <div class="password-row">
+                                <input id="devicePassword" type="text" value="123456" inputmode="numeric" maxlength="16">
+                                <button type="button" id="resetPasswordButton" class="secondary-button">123456</button>
+                            </div>
+                            <small class="field-help">Se usa para completar automáticamente los comandos que incluyen contraseña.</small>
+                        </div>
+
+                        <div id="dynamicFields" class="dynamic-fields"></div>
+
+                        <div id="compatibilityBox" class="compatibility-box hidden"></div>
+
+                        <div class="builder-actions">
+                            <button id="generateButton" type="button" class="primary-button">Generar comando</button>
+                            <button id="clearButton" type="button" class="secondary-button">Limpiar</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="command-result-column">
+
+                    <article class="result-card panel">
+                        <div class="panel-header">
+                            <div>
+                                <p class="eyebrow">Resultado</p>
+                                <h3>Comando listo para enviar</h3>
+                            </div>
+                            <span id="resultStatus" class="status-chip neutral">Esperando selección</span>
+                        </div>
+
+                        <div class="result-body">
+                            <div class="command-display">
+                                <code id="commandOutput">Selecciona una función para generar el comando.</code>
+                                <button id="copyButton" type="button" class="copy-button" disabled>Copiar</button>
+                            </div>
+
+                            <div id="copyFeedback" class="copy-feedback hidden"></div>
+
+                            <div id="verificationBox" class="result-info verification hidden">
+                                <div class="result-icon">✓</div>
+                                <div>
+                                    <strong>Verificación</strong>
+                                    <p id="verificationText"></p>
+                                </div>
+                            </div>
+
+                            <div id="noteBox" class="result-info note hidden">
+                                <div class="result-icon">i</div>
+                                <div>
+                                    <strong>Nota técnica</strong>
+                                    <p id="noteText"></p>
+                                </div>
+                            </div>
+
+                            <div id="warningBox" class="result-info warning hidden">
+                                <div class="result-icon">!</div>
+                                <div>
+                                    <strong>Atención</strong>
+                                    <p id="warningText"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="catalog-card panel">
+                        <div class="panel-header">
+                            <div>
+                                <p class="eyebrow">Biblioteca</p>
+                                <h3>Referencia rápida</h3>
+                            </div>
+                            <span id="catalogCount" class="catalog-count">0 comandos</span>
+                        </div>
+
+                        <div class="quick-links">
+                            <button type="button" class="quick-link" data-shortcut="ota">OTA / Firmware</button>
+                            <button type="button" class="quick-link" data-shortcut="ip_secumore">Secumore Plus</button>
+                            <button type="button" class="quick-link" data-shortcut="ip_traccar">Traccar</button>
+                            <button type="button" class="quick-link" data-shortcut="apn">APN</button>
+                            <button type="button" class="quick-link" data-shortcut="ubicacion">Ubicación</button>
+                            <button type="button" class="quick-link" data-shortcut="check">Diagnóstico</button>
+                        </div>
+
+                        <div class="source-note">
+                            <strong>Fuente:</strong> documento interno “COMANDOS BOXTRACK”. Los textos de comandos, ejemplos y notas se estructuraron a partir del material proporcionado.
+                        </div>
+                    </article>
+
+                </section>
+
+            </div>
+
+            <section class="history-card panel">
+                <div class="panel-header">
+                    <div>
+                        <p class="eyebrow">Historial local</p>
+                        <h3>Últimos comandos generados</h3>
+                    </div>
+                    <button id="clearHistoryButton" type="button" class="text-button">Limpiar historial</button>
+                </div>
+
+                <div id="historyList" class="history-list">
+                    <div class="history-empty">Todavía no has generado comandos en este navegador.</div>
+                </div>
+            </section>
+
+        </section>
+    </main>
+</div>
+
+<script type="module" src="./js/comandos.js?v=1"></script>
+</body>
+</html>

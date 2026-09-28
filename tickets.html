@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Tickets | CRM Empresa</title>
+
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/tickets.css?v=7">
+    <link rel="stylesheet" href="./css/responsive.css">
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- =========================================================
+         SIDEBAR
+    ========================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <img
+                src="./assets/img/logo-tucompras-icon.png"
+                alt="Tu Compras"
+                class="brand-logo"
+            >
+
+            <div class="brand-text">
+                <strong>CRM Empresa</strong>
+                <span>Gestión comercial</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="./dashboard.html"
+                id="dashboardMenuItem"
+                class="nav-item"
+            >
+                <span>▦</span>
+                Dashboard
+            </a>
+
+            <a
+                href="./clientes.html"
+                id="clientsMenuItem"
+                class="nav-item"
+            >
+                <span>♙</span>
+                Clientes
+            </a>
+
+            <a
+                href="./gestiones.html"
+                id="gestionesMenuItem"
+                class="nav-item"
+            >
+                <span>✓</span>
+                Gestiones
+            </a>
+
+            <a
+                href="./tickets.html"
+                id="ticketsMenuItem"
+                class="nav-item active"
+            >
+                <span>⚑</span>
+                Tickets
+            </a>
+
+            <a
+                href="#"
+                id="ventasMenuItem"
+                class="nav-item"
+                data-coming-soon="Ventas"
+            >
+                <span>$</span>
+                Ventas
+            </a>
+
+            <a
+                href="#"
+                id="seguimientosMenuItem"
+                class="nav-item"
+                data-coming-soon="Seguimientos"
+            >
+                <span>◷</span>
+                Seguimientos
+            </a>
+
+            <a
+                href="#"
+                id="reportesMenuItem"
+                class="nav-item"
+                data-coming-soon="Reportes"
+            >
+                <span>▥</span>
+                Reportes
+            </a>
+
+            <a 
+                href="./comandos.html" 
+                class="nav-item">
+                <span>⌘</span>
+                Comandos
+            </a>
+
+            <a
+                href="#"
+                id="chatMenuItem"
+                class="nav-item"
+                data-coming-soon="Chat"
+            >
+                <span>💬</span>
+                Chat
+            </a>
+
+            <a
+                href="./usuarios.html"
+                id="usersMenuItem"
+                class="nav-item"
+            >
+                <span>⚙️</span>
+                Usuarios
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <div class="user-mini-card">
+
+                <div
+                    id="userAvatar"
+                    class="user-avatar"
+                >
+                    AD
+                </div>
+
+                <div class="user-mini-info">
+
+                    <strong id="userName">
+                        Cargando...
+                    </strong>
+
+                    <span id="userRole">
+                        Usuario
+                    </span>
+
+                </div>
+
+            </div>
+
+            <button
+                type="button"
+                id="logoutButton"
+                class="logout-button"
+            >
+                Cerrar sesión
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================================
+         CONTENIDO PRINCIPAL
+    ========================================================== -->
+
+    <main class="main-content">
+
+        <!-- HEADER -->
+
+        <header class="page-header">
+
+            <div>
+
+                <div class="page-breadcrumb">
+                    CRM / Tickets
+                </div>
+
+                <h1>
+                    Tickets
+                </h1>
+
+                <p>
+                    Gestión y seguimiento de solicitudes de clientes.
+                </p>
+
+            </div>
+
+            <div class="page-header-actions">
+
+                <button
+                    type="button"
+                    id="refreshTicketsButton"
+                    class="btn btn-secondary"
+                >
+                    ↻ Actualizar
+                </button>
+
+                <button
+                    type="button"
+                    id="newTicketButton"
+                    class="btn btn-primary"
+                >
+                    + Nuevo ticket
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================================
+             MENSAJE GENERAL
+        ====================================================== -->
+
+        <div
+            id="ticketPageMessage"
+            class="page-message hidden"
+        ></div>
+
+
+        <!-- =====================================================
+             RESUMEN
+        ====================================================== -->
+
+        <section class="ticket-summary-grid">
+
+            <article class="summary-card assigned-clients-card role-ticket-card">
+
+                <div class="summary-icon">
+                    ♙
+                </div>
+
+                <div>
+                    <span class="summary-label">
+                        Clientes asignados
+                    </span>
+                    <strong
+                        id="assignedClientsCount"
+                        class="summary-value"
+                    >
+                        0
+                    </strong>
+                </div>
+
+            </article>
+
+
+            <article class="summary-card returned-tickets-card role-ticket-card">
+
+                <div class="summary-icon">
+                    ↩
+                </div>
+
+                <div>
+                    <span class="summary-label">
+                        Devueltos
+                    </span>
+                    <strong
+                        id="returnedTicketsCount"
+                        class="summary-value"
+                    >
+                        0
+                    </strong>
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <div class="summary-icon">
+                    ⚑
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        Total tickets
+                    </span>
+
+                    <strong
+                        id="totalTickets"
+                        class="summary-value"
+                    >
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <div class="summary-icon">
+                    ●
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        Nuevos
+                    </span>
+
+                    <strong
+                        id="newTickets"
+                        class="summary-value"
+                    >
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <div class="summary-icon">
+                    ◷
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        En proceso
+                    </span>
+
+                    <strong
+                        id="inProgressTickets"
+                        class="summary-value"
+                    >
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <div class="summary-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        Resueltos
+                    </span>
+
+                    <strong
+                        id="resolvedTickets"
+                        class="summary-value"
+                    >
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- =====================================================
+             FILTROS
+        ====================================================== -->
+
+        <section class="panel tickets-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Tickets registrados
+                    </h2>
+
+                    <p id="ticketsCountLabel">
+                        Cargando tickets...
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="ticket-filters">
+
+                <div class="filter-group search-filter">
+
+                    <label for="ticketSearch">
+                        Buscar
+                    </label>
+
+                    <input
+                        type="search"
+                        id="ticketSearch"
+                        class="form-control"
+                        placeholder="Ticket, cliente o título..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <div class="filter-group">
+
+                    <label for="ticketStatusFilter">
+                        Estado
+                    </label>
+
+                    <select
+                        id="ticketStatusFilter"
+                        class="form-control"
+                    >
+
+                        <option value="">
+                            Todos los estados
+                        </option>
+
+                        <option value="nuevo">
+                            Nuevo
+                        </option>
+
+                        <option value="asignado">
+                            Asignado
+                        </option>
+
+                        <option value="en_proceso">
+                            En proceso
+                        </option>
+
+                        <option value="esperando_cliente">
+                            Esperando cliente
+                        </option>
+
+                        <option value="escalado">
+                            Escalado
+                        </option>
+
+                        <option value="resuelto">
+                            Resuelto
+                        </option>
+
+                        <option value="cerrado">
+                            Cerrado
+                        </option>
+
+                        <option value="devuelto">
+                            Devuelto
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="filter-group">
+
+                    <label for="ticketPriorityFilter">
+                        Prioridad
+                    </label>
+
+                    <select
+                        id="ticketPriorityFilter"
+                        class="form-control"
+                    >
+
+                        <option value="">
+                            Todas
+                        </option>
+
+                        <option value="baja">
+                            Baja
+                        </option>
+
+                        <option value="media">
+                            Media
+                        </option>
+
+                        <option value="alta">
+                            Alta
+                        </option>
+
+                        <option value="urgente">
+                            Urgente
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="ticket-visual-legend" aria-label="Indicadores de tickets">
+                <div class="legend-group">
+                    <span class="legend-title">Prioridad</span>
+                    <span class="legend-item"><i class="legend-dot dot-baja"></i>Baja</span>
+                    <span class="legend-item"><i class="legend-dot dot-media"></i>Media</span>
+                    <span class="legend-item"><i class="legend-dot dot-alta"></i>Alta</span>
+                    <span class="legend-item"><i class="legend-dot dot-urgente"></i>Urgente</span>
+                </div>
+                <div class="legend-group">
+                    <span class="legend-title">Estado</span>
+                    <span class="legend-item"><i class="legend-dot dot-nuevo"></i>Nuevo</span>
+                    <span class="legend-item"><i class="legend-dot dot-proceso"></i>En proceso</span>
+                    <span class="legend-item"><i class="legend-dot dot-escalado"></i>Escalado</span>
+                    <span class="legend-item"><i class="legend-dot dot-resuelto"></i>Resuelto</span>
+                    <span class="legend-item"><i class="legend-dot dot-devuelto"></i>Devuelto</span>
+                </div>
+            </div>
+
+
+            <!-- =================================================
+                 TABLA
+            ================================================== -->
+
+            <div class="table-wrapper">
+
+                <table class="data-table tickets-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Ticket
+                            </th>
+
+                            <th>
+                                Cliente
+                            </th>
+
+                            <th>
+                                Título
+                            </th>
+
+                            <th>
+                                Prioridad
+                            </th>
+
+                            <th>
+                                Estado
+                            </th>
+
+                            <th>
+                                Responsable comercial
+                            </th>
+
+                            <th>
+                                Soporte
+                            </th>
+
+                            <th>
+                                Fecha
+                            </th>
+
+                            <th>
+                                Acción
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="ticketsTableBody">
+
+                        <tr>
+
+                            <td
+                                colspan="9"
+                                class="table-loading"
+                            >
+                                Cargando tickets...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =============================================================
+     MODAL — CREAR TICKET
+============================================================== -->
+
+<div
+    id="ticketModal"
+    class="modal-overlay hidden"
+>
+
+    <div
+        class="modal ticket-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="ticketModalTitle"
+    >
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2 id="ticketModalTitle">
+                    Nuevo ticket
+                </h2>
+
+                <p>
+                    Registra una nueva solicitud del cliente.
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                id="closeTicketModal"
+                class="modal-close"
+                aria-label="Cerrar"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="ticketForm">
+
+            <div class="form-grid">
+
+
+                <!-- CLIENTE -->
+
+                <div class="form-group full-width">
+
+                    <label for="ticketClient">
+                        Cliente *
+                    </label>
+
+                    <select
+                        id="ticketClient"
+                        class="form-control"
+                        required
+                    >
+
+                        <option value="">
+                            Seleccionar cliente
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- RESPONSABLE INICIAL -->
+
+                <div class="form-group">
+
+                    <label for="ticketCommercialResponsible">
+                        Responsable comercial inicial
+                    </label>
+
+                    <select
+                        id="ticketCommercialResponsible"
+                        class="form-control"
+                        disabled
+                    ></select>
+
+                    <small class="form-help">
+                        Inicialmente será quien crea el ticket.
+                        El administrador podrá modificarlo después.
+                    </small>
+
+                </div>
+
+
+                <!-- SOPORTE -->
+
+                <div class="form-group">
+
+                    <label for="ticketResponsible">
+                        Soporte
+                    </label>
+
+                    <select
+                        id="ticketResponsible"
+                        class="form-control"
+                    >
+
+                        <option value="">
+                            Asignación automática
+                        </option>
+
+                    </select>
+
+                    <small class="form-help">
+                        Si no hay soporte disponible, el ticket se
+                        creará pendiente de asignación.
+                    </small>
+
+                </div>
+
+
+                <!-- CATEGORÍA -->
+
+                <div class="form-group">
+
+                    <label for="ticketCategory">
+                        Categoría *
+                    </label>
+
+                    <select
+                        id="ticketCategory"
+                        class="form-control"
+                        required
+                    >
+
+                        <option value="">
+                            Seleccionar categoría
+                        </option>
+
+                        <option value="soporte">
+                            Soporte
+                        </option>
+
+                        <option value="reparacion">
+                            Reparación
+                        </option>
+
+                        <option value="comercial">
+                            Comercial
+                        </option>
+
+                        <option value="facturacion">
+                            Facturación
+                        </option>
+
+                        <option value="pedido">
+                            Pedido
+                        </option>
+
+                        <option value="garantia">
+                            Garantía
+                        </option>
+
+                        <option value="queja">
+                            Queja
+                        </option>
+
+                        <option value="otro">
+                            Otro
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- PRIORIDAD -->
+
+                <div class="form-group">
+
+                    <label for="ticketPriority">
+                        Prioridad *
+                    </label>
+
+                    <select
+                        id="ticketPriority"
+                        class="form-control"
+                        required
+                    >
+
+                        <option value="">
+                            Seleccionar prioridad
+                        </option>
+
+                        <option value="baja">
+                            Baja
+                        </option>
+
+                        <option value="media">
+                            Media
+                        </option>
+
+                        <option value="alta">
+                            Alta
+                        </option>
+
+                        <option value="urgente">
+                            Urgente
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- TÍTULO -->
+
+                <div class="form-group full-width">
+
+                    <label for="ticketTitle">
+                        Título *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="ticketTitle"
+                        class="form-control"
+                        maxlength="150"
+                        placeholder="Ej. Cliente reporta falla en dispositivo"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DESCRIPCIÓN -->
+
+                <div class="form-group full-width">
+
+                    <label for="ticketDescription">
+                        Descripción *
+                    </label>
+
+                    <textarea
+                        id="ticketDescription"
+                        class="form-control"
+                        rows="6"
+                        maxlength="5000"
+                        placeholder="Describe detalladamente la solicitud..."
+                        required
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="ticketFormMessage"
+                class="form-message hidden"
+            ></div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    id="cancelTicketButton"
+                    class="btn btn-secondary"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    id="saveTicketButton"
+                    class="btn btn-primary"
+                >
+                    Crear ticket
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =============================================================
+     MODAL — DETALLE DEL TICKET
+============================================================== -->
+
+<div
+    id="ticketDetailModal"
+    class="modal-overlay hidden"
+>
+
+    <div
+        class="modal ticket-detail-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="ticketDetailTitle"
+    >
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2 id="ticketDetailTitle">
+                    Detalle del ticket
+                </h2>
+
+                <p id="ticketDetailSubtitle">
+                    Información y seguimiento
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                id="closeTicketDetailModal"
+                class="modal-close"
+                aria-label="Cerrar"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="ticket-detail-body">
+
+            <div
+                id="ticketDetailMessage"
+                class="form-message hidden"
+            ></div>
+
+
+            <!-- INFORMACIÓN -->
+
+            <div class="ticket-detail-grid">
+
+                <div class="detail-card">
+
+                    <span class="detail-label">
+                        Cliente
+                    </span>
+
+                    <strong id="detailClient">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-card">
+
+                    <span class="detail-label">
+                        Fecha de creación
+                    </span>
+
+                    <strong id="detailCreatedAt">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-card">
+
+                    <span class="detail-label">
+                        Creado por
+                    </span>
+
+                    <strong id="detailCreatedBy">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-card">
+
+                    <span class="detail-label">
+                        Categoría
+                    </span>
+
+                    <strong id="detailCategory">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- EDICIÓN -->
+
+            <div class="ticket-edit-section">
+
+                <h3>
+                    Gestión del ticket
+                </h3>
+
+                <div class="form-grid">
+
+
+                    <!-- RESPONSABLE COMERCIAL -->
+
+                    <div class="form-group">
+
+                        <label for="detailCommercialResponsible">
+                            Responsable comercial
+                        </label>
+
+                        <select
+                            id="detailCommercialResponsible"
+                            class="form-control"
+                        ></select>
+
+                    </div>
+
+
+                    <!-- SOPORTE -->
+
+                    <div class="form-group">
+
+                        <label for="detailResponsible">
+                            Responsable de soporte
+                        </label>
+
+                        <select
+                            id="detailResponsible"
+                            class="form-control"
+                        ></select>
+
+                    </div>
+
+
+                    <!-- AVISO DE REPARACIÓN -->
+
+                    <div
+                        id="ticketRepairWarning"
+                        class="ticket-repair-warning hidden full-width"
+                        role="alert"
+                    >
+                        <div class="ticket-repair-warning-icon">
+                            !
+                        </div>
+
+                        <div class="ticket-repair-warning-content">
+                            <strong>
+                                REVISAR IMEI DEL EQUIPO EN PLATAFORMA ALIADO SI CUMPLE CON LA GARANTÍA O REPARACIÓN
+                            </strong>
+
+                            <p>
+                                Antes de continuar con el ticket de reparación,
+                                verifica el IMEI en la plataforma del aliado.
+                            </p>
+                        </div>
+
+                        <button
+                            type="button"
+                            id="ticketRepairWarningClose"
+                            class="ticket-repair-warning-close"
+                            aria-label="Cerrar aviso"
+                            title="Cerrar aviso"
+                        >
+                            ×
+                        </button>
+                    </div>
+
+
+                    <!-- IMEI -->
+
+                    <div
+                        id="ticketRepairImeiGroup"
+                        class="form-group full-width hidden"
+                    >
+                        <label for="ticketRepairImei">
+                            IMEI del equipo
+                        </label>
+
+                        <input
+                            type="text"
+                            id="ticketRepairImei"
+                            class="form-control"
+                            maxlength="30"
+                            inputmode="numeric"
+                            autocomplete="off"
+                            placeholder="Escribe el IMEI del equipo"
+                        >
+
+                        <small class="form-help">
+                            Este dato será guardado junto con el ticket para validar garantía o reparación.
+                        </small>
+                    </div>
+
+
+                    <!-- PRIORIDAD -->
+
+                    <div class="form-group">
+
+                        <label for="detailPriority">
+                            Prioridad
+                        </label>
+
+                        <select
+                            id="detailPriority"
+                            class="form-control"
+                        >
+
+                            <option value="baja">
+                                Baja
+                            </option>
+
+                            <option value="media">
+                                Media
+                            </option>
+
+                            <option value="alta">
+                                Alta
+                            </option>
+
+                            <option value="urgente">
+                                Urgente
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- ESTADO -->
+
+                    <div class="form-group">
+
+                        <label for="detailStatus">
+                            Estado
+                        </label>
+
+                        <select
+                            id="detailStatus"
+                            class="form-control"
+                        >
+
+                            <option value="nuevo">
+                                Nuevo
+                            </option>
+
+                            <option value="asignado">
+                                Asignado
+                            </option>
+
+                            <option value="en_proceso">
+                                En proceso
+                            </option>
+
+                            <option value="esperando_cliente">
+                                Esperando cliente
+                            </option>
+
+                            <option value="escalado">
+                                Escalado
+                            </option>
+
+                            <option value="resuelto">
+                                Resuelto
+                            </option>
+
+                            <option value="cerrado">
+                                Cerrado
+                            </option>
+
+                            <option value="devuelto">
+                                Devuelto
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TÍTULO / DESCRIPCIÓN -->
+
+            <div class="ticket-description-section">
+
+                <div>
+
+                    <span class="detail-label">
+                        Título
+                    </span>
+
+                    <div
+                        id="detailTicketTitle"
+                        class="detail-text"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <span class="detail-label">
+                        Descripción
+                    </span>
+
+                    <div
+                        id="detailDescription"
+                        class="detail-text detail-description"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- INFORMACIÓN DE REPARACIÓN -->
+
+            <section
+                id="ticketRepairDetailSection"
+                class="ticket-repair-detail-section hidden"
+            >
+                <div>
+                    <span class="detail-label">
+                        Reparación
+                    </span>
+
+                    <h3>
+                        Validación del equipo
+                    </h3>
+
+                    <p>
+                        Revisar el IMEI del equipo en plataforma aliado para validar garantía o reparación.
+                    </p>
+                </div>
+
+                <div class="ticket-repair-detail-imei">
+                    <span class="detail-label">
+                        IMEI
+                    </span>
+
+                    <strong id="ticketRepairDetailImei">
+                        —
+                    </strong>
+                </div>
+            </section>
+
+
+            <!-- INFORMACIÓN DE SOPORTE VISIBLE PARA EL ASESOR -->
+
+            <section
+                id="supportReadonlySection"
+                class="support-readonly-section hidden"
+            >
+                <div class="support-action-header">
+                    <div>
+                        <span class="detail-label">
+                            Información de soporte
+                        </span>
+                        <h3>
+                            Respuesta y formulario
+                        </h3>
+                        <p>
+                            Esta información es de solo lectura para el asesor comercial.
+                        </p>
+                    </div>
+
+                    <span
+                        id="supportReadonlyStatus"
+                        class="support-readonly-status"
+                    >
+                        —
+                    </span>
+                </div>
+
+                <div class="support-readonly-grid">
+                    <div class="support-readonly-block">
+                        <span class="detail-label">
+                            Comentario de soporte
+                        </span>
+
+                        <div
+                            id="supportReadonlyResponse"
+                            class="support-readonly-text"
+                        >
+                            Soporte aún no ha registrado una respuesta.
+                        </div>
+                    </div>
+
+                    <div class="support-readonly-block">
+                        <span class="detail-label">
+                            Link de formulario
+                        </span>
+
+                        <div
+                            id="supportReadonlyFormLink"
+                            class="support-readonly-text"
+                        >
+                            Soporte no ha agregado un formulario.
+                        </div>
+                    </div>
+
+                    <div class="support-readonly-block">
+                        <span class="detail-label">
+                            IMEI
+                        </span>
+
+                        <div
+                            id="supportReadonlyImei"
+                            class="support-readonly-text"
+                        >
+                            No aplica / no registrado
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- RESPUESTA DE SOPORTE -->
+
+            <section
+                id="supportResolutionSection"
+                class="support-resolution-section hidden"
+            >
+
+                <div class="support-action-header">
+                    <div>
+                        <span class="detail-label">
+                            Respuesta de soporte
+                        </span>
+                        <h3>
+                            Proceso realizado para resolver el ticket
+                        </h3>
+                        <p>
+                            Registra la respuesta y las acciones realizadas por soporte.
+                        </p>
+                    </div>
+                </div>
+
+                <textarea
+                    id="supportResolutionComment"
+                    class="form-control support-resolution-input"
+                    rows="5"
+                    maxlength="5000"
+                    placeholder="Describe el diagnóstico, las acciones realizadas y cómo se solucionó el problema..."
+                ></textarea>
+
+                <div class="support-form-link-field">
+                    <label for="supportFormLink">
+                        Link de formulario
+                        <span class="field-optional">
+                            Opcional
+                        </span>
+                    </label>
+
+                    <input
+                        type="url"
+                        id="supportFormLink"
+                        class="form-control"
+                        maxlength="1000"
+                        placeholder="https://..."
+                        autocomplete="off"
+                    >
+
+                    <small class="form-help">
+                        Puedes agregar el enlace al formulario. El asesor comercial podrá abrirlo, pero no modificarlo desde Tickets.
+                    </small>
+                </div>
+
+            </section>
+
+
+            <!-- DEVOLUCIÓN -->
+
+            <section
+                id="returnTicketSection"
+                class="return-ticket-section hidden"
+            >
+
+                <div class="support-action-header return-header">
+                    <div>
+                        <span class="detail-label">
+                            Devolución del ticket
+                        </span>
+                        <h3>
+                            Falta información o datos
+                        </h3>
+                        <p>
+                            Es obligatorio informar qué dato o información hace falta para continuar.
+                        </p>
+                    </div>
+                </div>
+
+                <textarea
+                    id="returnTicketComment"
+                    class="form-control return-ticket-input"
+                    rows="4"
+                    maxlength="3000"
+                    placeholder="Explica por qué se devuelve el ticket y qué información debe completar el área responsable..."
+                ></textarea>
+
+                <div class="support-return-actions">
+                    <button
+                        type="button"
+                        id="cancelReturnButton"
+                        class="btn btn-secondary"
+                    >
+                        Cancelar devolución
+                    </button>
+
+                    <button
+                        type="button"
+                        id="returnTicketButton"
+                        class="btn btn-danger"
+                    >
+                        Devolver ticket
+                    </button>
+                </div>
+
+            </section>
+
+
+            <!-- HISTORIAL -->
+
+            <div class="history-section">
+
+                <div class="section-title-row">
+
+                    <div>
+
+                        <h3>
+                            Historial
+                        </h3>
+
+                        <p>
+                            Registro de cambios y gestiones del ticket.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="ticketHistory"
+                    class="ticket-history"
+                >
+
+                    <div class="history-loading">
+                        Cargando historial...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    id="returnTicketOpenButton"
+                    class="btn btn-danger support-return-open-button"
+                >
+                    Devolver ticket
+                </button>
+
+                <button
+                    type="button"
+                    id="closeDetailButton"
+                    class="btn btn-secondary"
+                >
+                    Cerrar
+                </button>
+
+                <button
+                    type="button"
+                    id="saveTicketChangesButton"
+                    class="btn btn-primary"
+                >
+                    Guardar cambios
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script
+    type="module"
+    src="./js/tickets.js?v=10"
+></script>
+
+</body>
+</html>

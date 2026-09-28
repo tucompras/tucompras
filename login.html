@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Inicio de sesión CRM"
+    >
+
+    <title>Iniciar sesión | CRM</title>
+
+    <link
+        rel="stylesheet"
+        href="./css/reset.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./css/variables.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./css/layout.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./css/components.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./css/auth.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./css/responsive.css"
+    >
+
+</head>
+
+<body>
+
+    <main class="auth-page">
+
+        <section class="auth-card">
+
+            <div class="auth-header">
+
+                <div class="brand-logo" aria-label="TuCompras">
+                    <img
+                        src="./assets/img/logo-tucompras-icon.png"
+                        alt="TuCompras"
+                    >
+                </div>
+
+                <h1>
+                    
+                    TU COMPRAS 
+                </h1>
+
+                <p>
+                    Un nuevo dia para triunfar
+                </p>
+
+            </div>
+
+
+            <form
+                id="loginForm"
+                class="auth-form"
+            >
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Correo electrónico
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="correo@empresa.com"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Contraseña
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Ingresa tu contraseña"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+                <div
+                    id="loginMessage"
+                    class="form-message"
+                    role="alert"
+                ></div>
+
+
+                <button
+                    type="submit"
+                    id="loginButton"
+                    class="btn btn-primary btn-full"
+                >
+                    Iniciar sesión
+                </button>
+
+            </form>
+
+
+            <div class="auth-footer">
+
+                <a href="./index.html">
+                    Volver al inicio
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script
+        type="module"
+        src="./js/auth.js"
+    ></script>
+
+</body>
+</html>

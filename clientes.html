@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Gestión de clientes del CRM"
+    >
+
+    <title>Clientes | CRM Empresa</title>
+
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/clientes.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+
+
+</head>
+
+
+<body>
+
+<div id="app" class="app">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <img src="./assets/img/logo-tucompras-icon.png" alt="Tu Compras" class="brand-logo">
+            <div class="brand-name">Gestión</div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="./dashboard.html" class="nav-item">
+                <span>▦</span>
+                Dashboard
+            </a>
+
+            <a href="./clientes.html" class="nav-item active">
+                <span>♙</span>
+                Clientes
+            </a>
+
+            <a href="./gestiones.html" class="nav-item">
+                <span>✓</span>
+                Gestiones
+            </a>
+
+            <a href="./tickets.html" class="nav-item">
+                <span>⚑</span>
+                Tickets
+            </a>
+
+            <a href="#" class="nav-item" data-coming-soon="Ventas">
+                <span>$</span>
+                Ventas
+            </a>
+
+            <a href="#" class="nav-item" data-coming-soon="Seguimientos">
+                <span>◷</span>
+                Seguimientos
+            </a>
+
+            <a href="#" class="nav-item" data-coming-soon="Reportes">
+                <span>▥</span>
+                Reportes
+            </a>
+
+            <a 
+                href="./comandos.html" 
+                class="nav-item">
+                <span>⌘</span>
+                Comandos
+            </a>
+
+            <a href="#" class="nav-item" data-coming-soon="Chat">
+                <span>💬</span>
+                Chat
+            </a>
+
+            <a
+                href="./usuarios.html"
+                id="usersMenuItem"
+                class="nav-item"
+            >
+                <span>⚙️</span>
+                Usuarios
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <button
+                type="button"
+                id="logoutButton"
+                class="logout-button"
+            >
+                Cerrar sesión
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+    ====================================================== -->
+
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="eyebrow">
+                    Gestión comercial
+                </p>
+
+                <h1>
+                    Clientes
+                </h1>
+
+            </div>
+
+            <div class="user-area">
+
+                <div class="user-info">
+
+                    <strong id="userName">
+                        Usuario
+                    </strong>
+
+                    <span id="userRole">
+                        Cargando...
+                    </span>
+
+                </div>
+
+                <div
+                    id="userAvatar"
+                    class="user-avatar"
+                >
+                    U
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- CONTENIDO -->
+
+        <section class="page-content clientes-page">
+
+            <!-- ENCABEZADO -->
+
+            <div class="page-header">
+
+                <div>
+
+                    <p class="page-description">
+                         Registra y administra tus clientes.
+                        El número de WhatsApp identifica de forma única al cliente.
+                    </p>
+
+                </div>
+
+                <div class="page-actions">
+
+                    <button
+                        type="button"
+                        id="refreshClientsButton"
+                        class="btn btn-secondary"
+                    >
+                        Actualizar
+                    </button>
+
+                    <button
+                        type="button"
+                        id="newClientButton"
+                        class="btn btn-primary"
+                    >
+                        + Crear cliente
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENSAJE GENERAL -->
+
+            <div
+                id="clientMessage"
+                class="page-message hidden"
+                role="alert"
+            ></div>
+
+
+            <!-- BUSCADOR -->
+
+            <section class="search-panel">
+
+                <div class="search-field">
+
+                    <label for="searchClient">
+                        Buscar cliente
+                    </label>
+
+                    <input
+                        type="search"
+                        id="searchClient"
+                        placeholder="Buscar por nombre, WhatsApp, empresa o ciudad..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+            </section>
+
+
+            <!-- TABLA -->
+
+            <section class="clients-panel">
+
+                <div class="clients-panel-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            Clientes registrados
+                        </p>
+
+                        <h3>
+                            Listado de clientes
+                        </h3>
+
+                    </div>
+
+                    <div class="clients-count">
+
+                        <span id="clientCounter">
+                            Clientes encontrados: 0
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table class="data-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Cliente
+                                </th>
+
+                                <th>
+                                    WhatsApp
+                                </th>
+
+                                <th>
+                                    Empresa
+                                </th>
+
+                                <th>
+                                    Ciudad
+                                </th>
+
+                                <th>
+                                    Asesor creador
+                                </th>
+
+                                <th>
+                                    Acciones
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="clientsTableBody">
+
+                            <tr>
+
+                                <td
+                                    colspan="6"
+                                    class="table-empty"
+                                >
+                                    Cargando clientes...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+     MODAL CREAR / EDITAR CLIENTE
+====================================================== -->
+
+<div
+    id="clientModal"
+    class="clientes-page-modal hidden"
+>
+
+    <div
+        class="client-modal-box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="clientModalTitle"
+    >
+
+        <div class="client-modal-header">
+
+            <p class="eyebrow">
+                Base de clientes
+            </p>
+
+            <h2 id="clientModalTitle">
+                Crear cliente
+            </h2>
+
+            <p>
+                El número de WhatsApp o el usuario / nombre de WhatsApp
+                identifica al cliente.
+            </p>
+
+            <button
+                type="button"
+                id="closeClientModal"
+                class="modal-close-fixed"
+                aria-label="Cerrar"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form
+            id="clientForm"
+            class="client-modal-body"
+        >
+
+            <input
+                type="hidden"
+                id="clientId"
+                value=""
+            >
+
+
+            <div
+                id="formMessage"
+                class="form-message hidden"
+                role="alert"
+            ></div>
+
+
+            <div class="form-grid-modern">
+
+                <!-- IDENTIFICADORES -->
+
+                <div class="identifier-box">
+
+                    <div class="identifier-title">
+                        Datos para identificar al cliente
+                    </div>
+
+                    <div class="field-modern">
+
+                        <label for="whatsapp">
+                            Número de WhatsApp
+                            <span class="required-mark">*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="whatsapp"
+                            placeholder="Ej. 300 123 4567"
+                            autocomplete="tel"
+                        >
+
+                        <small>
+                            Puedes registrar el número si el cliente lo proporciona.
+                        </small>
+
+                    </div>
+
+
+                    <div class="field-modern">
+
+                        <label for="nombreWhatsapp">
+                            Usuario / nombre de WhatsApp
+                            <span class="required-mark">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nombreWhatsapp"
+                            placeholder="Ej. Juan Pérez"
+                            autocomplete="name"
+                        >
+
+                        <small>
+                            Puedes utilizar este dato si no tienes el número.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- NOMBRE -->
+
+                <div class="field-modern">
+
+                    <label for="nombre">
+                        Nombre completo
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nombre"
+                        placeholder="Nombre completo"
+                    >
+
+                </div>
+
+
+                <!-- EMPRESA -->
+
+                <div class="field-modern">
+
+                    <label for="empresa">
+                        Empresa
+                    </label>
+
+                    <input
+                        type="text"
+                        id="empresa"
+                        placeholder="Nombre de la empresa"
+                    >
+
+                </div>
+
+
+                <!-- TIPO IDENTIFICACION -->
+
+                <div class="field-modern">
+
+                    <label for="tipoIdentificacion">
+                        Tipo de identificación
+                    </label>
+
+                    <select id="tipoIdentificacion">
+
+                        <option value="">
+                            Sin especificar
+                        </option>
+
+                        <option value="CC">
+                            Cédula de ciudadanía
+                        </option>
+
+                        <option value="NIT">
+                            NIT
+                        </option>
+
+                        <option value="CE">
+                            Cédula de extranjería
+                        </option>
+
+                        <option value="PASAPORTE">
+                            Pasaporte
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- IDENTIFICACION -->
+
+                <div class="field-modern">
+
+                    <label for="identificacion">
+                        Identificación
+                    </label>
+
+                    <input
+                        type="text"
+                        id="identificacion"
+                        placeholder="Número de identificación"
+                    >
+
+                </div>
+
+
+                <!-- TELEFONO -->
+
+                <div class="field-modern">
+
+                    <label for="telefono">
+                        Teléfono
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="telefono"
+                        placeholder="Teléfono"
+                    >
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="field-modern">
+
+                    <label for="email">
+                        Correo electrónico
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="correo@empresa.com"
+                    >
+
+                </div>
+
+
+                <!-- CIUDAD -->
+
+                <div class="field-modern">
+
+                    <label for="ciudad">
+                        Ciudad
+                    </label>
+
+                    <input
+                        type="text"
+                        id="ciudad"
+                        placeholder="Ciudad"
+                    >
+
+                </div>
+
+
+                <!-- DIRECCION -->
+
+                <div class="field-modern">
+
+                    <label for="direccion">
+                        Dirección
+                    </label>
+
+                    <input
+                        type="text"
+                        id="direccion"
+                        placeholder="Dirección"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-help-modern">
+
+                <strong>
+                    Asesor comercial
+                </strong>
+
+                <span>
+                    El cliente quedará asociado automáticamente al usuario
+                    que lo registre.
+                </span>
+
+            </div>
+
+
+            <div class="client-modal-footer">
+
+                <button
+                    type="button"
+                    id="cancelClientButton"
+                    class="btn btn-secondary"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    id="saveClientButton"
+                    class="btn btn-primary"
+                >
+                    Crear cliente
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MODAL CLIENTE EXISTENTE
+====================================================== -->
+
+<div
+    id="duplicateClientModal"
+    class="clientes-page-modal hidden"
+>
+
+    <div
+        class="duplicate-modal-modern"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="duplicateClientTitle"
+    >
+
+        <div class="duplicate-header">
+
+            <p class="eyebrow">
+                Cliente existente
+            </p>
+
+            <h2 id="duplicateClientTitle">
+                Este cliente ya existe
+            </h2>
+
+            <button
+                type="button"
+                id="closeDuplicateModal"
+                class="duplicate-close"
+                aria-label="Cerrar"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="duplicate-body">
+
+            <div class="duplicate-intro">
+
+                <div class="duplicate-icon">
+                    !
+                </div>
+
+                <div>
+
+                    <h3>
+                        Cliente registrado
+                    </h3>
+
+                    <p>
+                        Encontramos un cliente con los datos ingresados.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="duplicate-client-card-modern">
+
+                <div class="duplicate-client-row-modern">
+
+                    <span>
+                        Cliente
+                    </span>
+
+                    <strong id="duplicateClientName">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="duplicate-client-row-modern">
+
+                    <span>
+                        WhatsApp
+                    </span>
+
+                    <strong id="duplicateClientWhatsapp">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="duplicate-client-row-modern">
+
+                    <span>
+                        Empresa
+                    </span>
+
+                    <strong id="duplicateClientCompany">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="duplicate-client-row-modern">
+
+                    <span>
+                        Asesor creador
+                    </span>
+
+                    <strong id="duplicateClientAdvisor">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <p class="duplicate-help-modern">
+                Puedes ir directamente a Gestión para registrar una nueva
+                actividad con este cliente.
+            </p>
+
+
+            <div class="duplicate-footer">
+
+                <button
+                    type="button"
+                    id="closeDuplicateButton"
+                    class="btn btn-secondary"
+                >
+                    Cerrar
+                </button>
+
+                <button
+                    type="button"
+                    id="manageDuplicateButton"
+                    class="btn btn-primary"
+                >
+                    Gestionar cliente
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script
+    type="module"
+    src="./js/clientes.js?v=13"
+></script>
+
+</body>
+</html>

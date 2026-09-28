@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Gestiones | CRM Empresa</title>
+
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/gestiones.css?v=7">
+    <link rel="stylesheet" href="./css/responsive.css">
+
+</head>
+
+
+<body>
+
+<div id="app" class="app">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <img src="./assets/img/logo-tucompras-icon.png" alt="Tu Compras" class="brand-logo">
+            <div class="brand-name">Gestión</div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="./dashboard.html" class="nav-item">
+                <span>▦</span>
+                Dashboard
+            </a>
+
+            <a href="./clientes.html" class="nav-item">
+                <span>♙</span>
+                Clientes
+            </a>
+
+            <a href="./gestiones.html" class="nav-item active">
+                <span>✓</span>
+                Gestiones
+            </a>
+
+            <a href="./tickets.html" class="nav-item">
+                <span>⚑</span>
+                Tickets
+            </a>
+
+            <a href="#" class="nav-item" data-coming-soon="Ventas">
+                <span>$</span>
+                Ventas
+            </a>
+
+            <a href="#" class="nav-item" data-coming-soon="Seguimientos">
+                <span>◷</span>
+                Seguimientos
+            </a>
+
+            <a href="#" class="nav-item" data-coming-soon="Reportes">
+                <span>▥</span>
+                Reportes
+            </a>
+
+            <a 
+                href="./comandos.html" 
+                class="nav-item">
+                <span>⌘</span>
+                Comandos
+            </a>
+
+            <a href="#" class="nav-item" data-coming-soon="Chat">
+                <span>💬</span>
+                Chat
+            </a>
+
+            <a
+                href="./usuarios.html"
+                id="usersMenuItem"
+                class="nav-item"
+            >
+                <span>⚙️</span>
+                Usuarios
+            </a>     
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <button
+                type="button"
+                id="logoutButton"
+                class="logout-button"
+            >
+                Cerrar sesión
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+    ====================================================== -->
+
+    <main class="main-content gestiones-page">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="eyebrow">
+                    Gestión comercial
+                </p>
+
+                <h1>
+                    Gestiones
+                </h1>
+
+            </div>
+
+            <div class="user-area">
+
+                <div class="user-info">
+
+                    <strong id="userName">
+                        Usuario
+                    </strong>
+
+                    <span id="userRole">
+                        Cargando...
+                    </span>
+
+                </div>
+
+                <div
+                    id="userAvatar"
+                    class="user-avatar"
+                >
+                    U
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ENCABEZADO DEL MÓDULO -->
+
+        <header class="page-header">
+
+            <div>
+
+                <div class="page-breadcrumb">
+                    CRM / Gestiones
+                </div>
+
+                <h1>
+                    Gestiones
+                </h1>
+
+                <p>
+                    Registra llamadas, WhatsApp, correos,
+                    reuniones, visitas y contactos comerciales.
+                </p>
+
+            </div>
+
+            <div class="page-header-actions">
+
+                <button
+                    type="button"
+                    id="refreshGestionesButton"
+                    class="btn btn-secondary"
+                >
+                    ↻ Actualizar
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             MESSAGE
+        ================================================== -->
+
+        <div
+            id="gestionPageMessage"
+            class="page-message hidden"
+        ></div>
+
+
+        <!-- =================================================
+             SUMMARY
+        ================================================== -->
+
+        <section class="gestion-summary-grid">
+
+            <article class="summary-card">
+
+                <div class="summary-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        Gestiones
+                    </span>
+
+                    <strong
+                        id="totalGestiones"
+                        class="summary-value"
+                    >
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <div class="summary-icon">
+                    ☎
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        Hoy
+                    </span>
+
+                    <strong
+                        id="todayGestiones"
+                        class="summary-value"
+                    >
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <div class="summary-icon">
+                    ◷
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        Próximos seguimientos
+                    </span>
+
+                    <strong
+                        id="pendingFollowups"
+                        class="summary-value"
+                    >
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <div class="summary-icon">
+                    !
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        Vencidos
+                    </span>
+
+                    <strong
+                        id="overdueFollowups"
+                        class="summary-value"
+                    >
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- =================================================
+             RENDIMIENTO DEL ASESOR
+        ================================================== -->
+
+        <section class="gestion-performance-panel">
+
+            <div class="performance-header">
+
+                <div>
+                    <span class="performance-eyebrow">
+                        Rendimiento de gestión
+                    </span>
+
+                    <h2>
+                        Ayer vs. hoy
+                    </h2>
+
+                    <p>
+                        Compara tu actividad diaria y mantén el ritmo.
+                    </p>
+                </div>
+
+                <div
+                    id="gestionPerformanceStatus"
+                    class="performance-status red"
+                >
+                    <span class="performance-status-dot"></span>
+
+                    <span id="gestionPerformanceStatusText">
+                        Calculando actividad...
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="performance-content">
+
+                <div class="performance-chart">
+
+                    <div class="performance-axis">
+
+                        <div
+                            id="yesterdayGestionesBar"
+                            class="performance-bar yesterday"
+                            style="height: 8%;"
+                        >
+                            <strong id="performanceYesterdayValue">
+                                0
+                            </strong>
+                        </div>
+
+                        <div
+                            id="todayGestionesBar"
+                            class="performance-bar today"
+                            style="height: 8%;"
+                        >
+                            <strong id="performanceTodayValue">
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+                    <div class="performance-labels">
+
+                        <div>
+                            <span>Ayer</span>
+                            <strong id="yesterdayGestiones">
+                                0
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>Hoy</span>
+                            <strong id="todayPerformanceLabel">
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="performance-traffic">
+
+                    <div class="traffic-light">
+
+                        <span
+                            id="trafficGreen"
+                            class="traffic-dot green"
+                            title="Buen ritmo"
+                        ></span>
+
+                        <span
+                            id="trafficYellow"
+                            class="traffic-dot yellow"
+                            title="Ritmo medio"
+                        ></span>
+
+                        <span
+                            id="trafficRed"
+                            class="traffic-dot red"
+                            title="Aumentar actividad"
+                        ></span>
+
+                    </div>
+
+                    <div>
+                        <span class="traffic-caption">
+                            Semáforo de actividad
+                        </span>
+
+                        <strong id="trafficLevelLabel">
+                            Calculando...
+                        </strong>
+
+                        <p id="performanceComparison">
+                            Comparando con ayer...
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PANEL
+        ================================================== -->
+
+        <section class="panel gestiones-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Historial de gestiones
+                    </h2>
+
+                    <p id="gestionesCountLabel">
+                        Cargando...
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- FILTERS -->
+
+            <div class="gestion-filters">
+
+                <div class="filter-group search-filter">
+
+                    <label for="gestionSearch">
+                        Buscar
+                    </label>
+
+                    <input
+                        type="search"
+                        id="gestionSearch"
+                        class="form-control"
+                        placeholder="Cliente, asesor o descripción..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <div class="filter-group">
+
+                    <label for="gestionTypeFilter">
+                        Tipo
+                    </label>
+
+                    <select
+                        id="gestionTypeFilter"
+                        class="form-control"
+                    >
+
+                        <option value="">
+                            Todos
+                        </option>
+
+                        <option value="llamada">
+                            Llamada
+                        </option>
+
+                        <option value="whatsapp">
+                            WhatsApp
+                        </option>
+
+                        <option value="email">
+                            Email
+                        </option>
+
+                        <option value="reunion">
+                            Reunión
+                        </option>
+
+                        <option value="visita">
+                            Visita
+                        </option>
+
+                        <option value="cotizacion">
+                            Cotización
+                        </option>
+
+                        <option value="seguimiento">
+                            Seguimiento
+                        </option>
+
+                        <option value="queja">
+                            Queja
+                        </option>
+
+                        <option value="soporte">
+                            Soporte
+                        </option>
+
+                        <option value="venta">
+                            Venta
+                        </option>
+
+                        <option value="otro">
+                            Otro
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="filter-group">
+
+                    <label for="gestionResultFilter">
+                        Resultado
+                    </label>
+
+                    <select
+                        id="gestionResultFilter"
+                        class="form-control"
+                    >
+
+                        <option value="">
+                            Todos
+                        </option>
+
+                        <option value="contactado">
+                            Contactado
+                        </option>
+
+                        <option value="no_contesta">
+                            No contesta
+                        </option>
+
+                        <option value="interesado">
+                            Interesado
+                        </option>
+
+                        <option value="cotizacion_enviada">
+                            Cotización enviada
+                        </option>
+
+                        <option value="esperando">
+                            Esperando
+                        </option>
+
+                        <option value="venta">
+                            Venta
+                        </option>
+
+                        <option value="perdido">
+                            Perdido
+                        </option>
+
+                        <option value="soporte">
+                            Soporte
+                        </option>
+
+                        <option value="seguimiento">
+                            Seguimiento
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="table-wrapper">
+
+                <table class="data-table gestiones-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Fecha
+                            </th>
+
+                            <th>
+                                Cliente
+                            </th>
+
+                            <th>
+                                Asesor
+                            </th>
+
+                            <th>
+                                Tipo
+                            </th>
+
+                            <th>
+                                Resultado
+                            </th>
+
+                            <th>
+                                Descripción
+                            </th>
+
+                            <th>
+                                Próximo seguimiento
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="gestionesTableBody">
+
+                        <tr>
+
+                            <td
+                                colspan="7"
+                                class="table-loading"
+                            >
+                                Cargando gestiones...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL NUEVA GESTIÓN
+========================================================== -->
+
+<div
+    id="gestionModal"
+    class="gestion-modal-overlay hidden"
+>
+
+    <div
+        class="gestion-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="gestionModalTitle"
+    >
+
+        <div class="gestion-modal-header">
+
+            <div>
+
+                <p class="eyebrow">
+                    Gestión comercial
+                </p>
+
+                <h2 id="gestionModalTitle">
+                    Nueva gestión
+                </h2>
+
+                <p>
+                    Registra el contacto realizado con el cliente.
+                </p>
+
+            </div>
+
+            <button
+                id="closeGestionModal"
+                type="button"
+                class="gestion-modal-close"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="gestion-modal-body">
+
+            <div
+                id="gestionFormMessage"
+                class="form-message hidden"
+            ></div>
+
+
+            <form id="gestionForm">
+
+                <div id="gestionClientSelector" class="field hidden">
+
+    <label for="gestionClient">
+        Cliente *
+    </label>
+
+    <select
+        id="gestionClient"
+        required
+    >
+        <option value="">
+            Selecciona un cliente
+        </option>
+    </select>
+
+</div>
+
+
+<div
+    id="selectedClientPreview"
+    class="selected-client-preview hidden"
+></div>
+
+
+                <div class="form-grid-2">
+
+                    <!-- TIPO -->
+                    <div class="form-group">
+
+                        <label for="gestionType">
+                            Tipo de gestión *
+                        </label>
+
+                        <select
+                            id="gestionType"
+                            required
+                        >
+
+                            <option value="">
+                                Seleccionar
+                            </option>
+
+                            <option value="Llamada">
+                                Llamada
+                            </option>
+
+                            <option value="WhatsApp">
+                                WhatsApp
+                            </option>
+
+                            <option value="Correo">
+                                Correo
+                            </option>
+
+                            <option value="Reunión">
+                                Reunión
+                            </option>
+
+                            <option value="Visita">
+                                Visita
+                            </option>
+
+                            <option value="Cotización">
+                                Cotización
+                            </option>
+
+                            <option value="Seguimiento">
+                                Seguimiento
+                            </option>
+
+                            <option value="Queja">
+                                Queja
+                            </option>
+
+                            <option value="Soporte">
+                                Soporte
+                            </option>
+
+                            <option value="Venta">
+                                Venta
+                            </option>
+
+                            <option value="Otro">
+                                Otro
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- RESULTADO -->
+                    <div class="form-group">
+
+                        <label for="gestionResult">
+                            Resultado *
+                        </label>
+
+                        <select
+                            id="gestionResult"
+                            required
+                        >
+
+                            <option value="">
+                                Seleccionar
+                            </option>
+
+                            <option value="Contactado">
+                                Contactado
+                            </option>
+
+                            <option value="Sin respuesta">
+                                Sin respuesta
+                            </option>
+
+                            <option value="Interesado">
+                                Interesado
+                            </option>
+
+                            <option value="Cotización enviada">
+                                Cotización enviada
+                            </option>
+
+                            <option value="Esperando">
+                                Esperando
+                            </option>
+
+                            <option value="Venta">
+                                Venta
+                            </option>
+
+                            <option value="Perdido">
+                                Perdido
+                            </option>
+
+                            <option value="Soporte">
+                                Soporte
+                            </option>
+
+                            <option value="Seguimiento">
+                                Seguimiento
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     TICKET AUTOMÁTICO DE SOPORTE
+                ================================================== -->
+
+                <section
+                    id="supportTicketSection"
+                    class="support-ticket-section hidden"
+                >
+
+                    <div class="support-ticket-header">
+
+                        <div>
+                            <span class="support-ticket-eyebrow">
+                                Atención de soporte
+                            </span>
+
+                            <h3>
+                                Crear ticket automáticamente
+                            </h3>
+
+                            <p id="supportTicketInfo">
+                                Al registrar esta gestión se creará automáticamente un ticket.
+                            </p>
+                        </div>
+
+                        <span class="support-ticket-badge">
+                            TICKET
+                        </span>
+
+                    </div>
+
+
+                    <div class="support-ticket-grid">
+
+                        <div class="form-group">
+
+                            <label for="supportTicketPriority">
+                                Prioridad del ticket *
+                            </label>
+
+                            <select
+                                id="supportTicketPriority"
+                                required
+                            >
+
+                                <option value="baja">
+                                    Baja
+                                </option>
+
+                                <option value="media" selected>
+                                    Media
+                                </option>
+
+                                <option value="alta">
+                                    Alta
+                                </option>
+
+                                <option value="urgente">
+                                    Urgente
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Categoría
+                            </label>
+
+                            <div class="support-category-fixed">
+                                Soporte
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group full-width">
+
+                            <label for="supportTicketTitle">
+                                Título del ticket *
+                            </label>
+
+                            <input
+                                type="text"
+                                id="supportTicketTitle"
+                                maxlength="150"
+                                placeholder="Ej. Cliente reporta falla en dispositivo"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group full-width">
+
+                            <label for="supportTicketDescription">
+                                Problema para soporte *
+                            </label>
+
+                            <textarea
+                                id="supportTicketDescription"
+                                rows="4"
+                                placeholder="Describe claramente qué necesita resolver soporte..."
+                            ></textarea>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- FECHAS -->
+                <div class="form-grid-2">
+
+                    <div class="form-group">
+
+                        <label for="gestionDate">
+                            Fecha y hora *
+                        </label>
+
+                        <input
+                            type="datetime-local"
+                            id="gestionDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="gestionNextDate">
+                            Próximo seguimiento
+                        </label>
+
+                        <input
+                            type="datetime-local"
+                            id="gestionNextDate"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- RECORDATORIO -->
+                <div class="form-group">
+
+                    <label for="gestionReminder">
+                        Recordatorio
+                    </label>
+
+                    <select id="gestionReminder">
+
+                        <option value="">
+                            Sin recordatorio
+                        </option>
+
+                        <option value="15_min">
+                            15 minutos antes
+                        </option>
+
+                        <option value="30_min">
+                            30 minutos antes
+                        </option>
+
+                        <option value="1_hora">
+                            1 hora antes
+                        </option>
+
+                        <option value="1_dia">
+                            1 día antes
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- DESCRIPCIÓN -->
+                <div class="form-group">
+
+                    <label for="gestionDescription">
+                        Descripción *
+                    </label>
+
+                    <textarea
+                        id="gestionDescription"
+                        rows="5"
+                        placeholder="Describe qué ocurrió durante la gestión..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- BOTONES -->
+                <div class="gestion-form-actions">
+
+                    <button
+                        id="cancelGestionButton"
+                        type="button"
+                        class="btn btn-secondary"
+                    >
+                        Cancelar
+                    </button>
+
+                    <button
+                        id="saveGestionButton"
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Registrar gestión
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script
+    type="module"
+    src="./js/gestiones.js?v=7"
+></script>
+
+</body>
+</html>

@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Usuarios | CRM</title>
+
+    <link
+        rel="stylesheet"
+        href="./css/reset.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./css/variables.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./css/layout.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./css/components.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./css/usuarios.css?v=3"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./css/responsive.css"
+    >
+
+</head>
+
+
+<body>
+
+<div class="app-shell">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+
+        <!-- MARCA -->
+
+        <div class="sidebar-brand">
+
+            <div class="brand-logo-wrap">
+                <img
+                    src="./assets/img/logo-tucompras-icon.png"
+                    alt="Tu Compras"
+                    class="brand-logo-image"
+                >
+            </div>
+
+            <div>
+
+                <strong>
+                    Gestión Comercial
+                </strong>
+
+                <small>
+                    Sistema interno
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- NAVEGACIÓN -->
+
+        <nav class="sidebar-nav">
+
+
+            <div class="nav-section-title">
+                PRINCIPAL
+            </div>
+
+
+            <a
+                href="./dashboard.html"
+                class="nav-item"
+            >
+
+                <span>▦</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="./clientes.html"
+                class="nav-item"
+            >
+
+                <span>♙</span>
+
+                Clientes
+
+            </a>
+
+
+            <a
+                href="./gestiones.html"
+                class="nav-item"
+            >
+                <span>✓</span>
+                Gestiones
+            </a>
+
+
+            <a
+                href="./tickets.html"
+                class="nav-item"
+            >
+
+                <span>⚑</span>
+
+                Tickets
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-item"
+                data-coming-soon="Ventas"
+            >
+
+                <span>$</span>
+
+                Ventas
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-item"
+                data-coming-soon="Seguimientos"
+            >
+
+                <span>◷</span>
+
+                Seguimientos
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-item"
+                data-coming-soon="Reportes"
+            >
+
+                <span>▥</span>
+
+                Reportes
+
+            </a>
+
+
+            <div class="nav-section-title">
+                ADMINISTRACIÓN
+            </div>
+
+
+            <a
+                href="./usuarios.html"
+                id="usersMenuItem"
+                class="nav-item active"
+            >
+
+                <span>⚙️</span>
+
+                Usuarios
+
+            </a>
+
+
+        </nav>
+
+
+        <!-- CERRAR SESIÓN -->
+
+        <div class="sidebar-footer">
+
+            <button
+                type="button"
+                id="logoutButton"
+                class="logout-button"
+            >
+
+                Cerrar sesión
+
+            </button>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+
+            <div>
+
+                <h1>
+                    Usuarios
+                </h1>
+
+                <p>
+                    Administración de usuarios, roles y permisos
+                </p>
+
+            </div>
+
+
+            <div class="topbar-user">
+
+
+                <div
+                    id="userAvatar"
+                    class="user-avatar"
+                >
+                    AD
+                </div>
+
+
+                <div class="topbar-user-info">
+
+                    <strong id="userName">
+                        Usuario
+                    </strong>
+
+                    <span id="userRole">
+                        Administrador
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =================================================
+             PÁGINA
+        ================================================== -->
+
+        <section class="page-content">
+
+
+            <!-- MENSAJE GENERAL -->
+
+            <div
+                id="pageMessage"
+                class="page-message"
+            ></div>
+
+
+
+            <!-- =================================================
+                 ENCABEZADO
+            ================================================== -->
+
+            <div class="users-toolbar">
+
+
+                <div class="users-toolbar-info">
+
+                    <p>
+                        Crea y administra las cuentas que tendrán acceso al CRM.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="newUserButton"
+                    class="btn btn-primary"
+                >
+
+                    + Nuevo usuario
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TABLA DE USUARIOS
+            ================================================== -->
+
+            <div class="panel">
+
+
+                <div class="panel-header">
+
+
+                    <div>
+
+                        <strong>
+                            Usuarios registrados
+                        </strong>
+
+                        <span
+                            id="usersCount"
+                            class="users-count"
+                        >
+                            0
+                        </span>
+
+                    </div>
+
+
+                    <input
+                        type="search"
+                        id="userSearch"
+                        class="form-control users-search"
+                        placeholder="Buscar usuario..."
+                    >
+
+
+                </div>
+
+
+
+                <div class="table-wrapper">
+
+
+                    <table class="data-table">
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Usuario
+                                </th>
+
+                                <th>
+                                    Correo
+                                </th>
+
+                                <th>
+                                    Rol
+                                </th>
+
+                                <th>
+                                    Estado
+                                </th>
+
+                                <th>
+                                    Soporte
+                                </th>
+
+                                <th>
+                                    Permisos
+                                </th>
+
+                                <th>
+                                    Acciones
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="usersTableBody">
+
+                        </tbody>
+
+
+                    </table>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     MODAL USUARIO
+========================================================= -->
+
+<div
+    id="userModal"
+    class="modal-overlay hidden"
+>
+
+
+    <div class="modal user-modal">
+
+
+        <!-- CABECERA -->
+
+        <div class="modal-header">
+
+
+            <div>
+
+                <h2 id="modalTitle">
+                    Nuevo usuario
+                </h2>
+
+                <p>
+                    Configura los datos y permisos de acceso.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="closeModalButton"
+                class="modal-close"
+            >
+                ×
+            </button>
+
+
+        </div>
+
+
+
+        <!-- FORMULARIO -->
+
+        <form id="userForm">
+
+
+            <input
+                type="hidden"
+                id="editingUserId"
+            >
+
+
+
+            <!-- =================================================
+                 DATOS BÁSICOS
+            ================================================== -->
+
+            <div class="form-grid">
+
+
+                <!-- NOMBRE -->
+
+                <div class="form-group">
+
+                    <label for="userNameInput">
+                        Nombre completo
+                    </label>
+
+                    <input
+                        type="text"
+                        id="userNameInput"
+                        class="form-control"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- CORREO -->
+
+                <div class="form-group">
+
+                    <label for="userEmailInput">
+                        Correo electrónico
+                    </label>
+
+                    <input
+                        type="email"
+                        id="userEmailInput"
+                        class="form-control"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- ROL -->
+
+                <div class="form-group">
+
+                    <label for="userRoleInput">
+                        Rol
+                    </label>
+
+                    <select
+                        id="userRoleInput"
+                        class="form-control"
+                        required
+                    >
+
+                        <option value="administrador">
+                            Administrador
+                        </option>
+
+                        <option value="jefe_ventas_marketing">
+                            Jefe de ventas y marketing
+                        </option>
+
+                        <option value="asesor_comercial">
+                            Asesor comercial
+                        </option>
+
+                        <option value="asesor_soporte">
+                            Asesor de soporte
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- ESTADO -->
+
+                <div class="form-group">
+
+                    <label for="userStatusInput">
+                        Estado
+                    </label>
+
+                    <select
+                        id="userStatusInput"
+                        class="form-control"
+                        required
+                    >
+
+                        <option value="activo">
+                            Activo
+                        </option>
+
+                        <option value="inactivo">
+                            Inactivo
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CONFIGURACIÓN DE SOPORTE
+            ================================================== -->
+
+            <section
+                id="supportConfigSection"
+                class="support-config-section hidden"
+            >
+
+
+                <div class="support-config-header">
+
+
+                    <div>
+
+                        <strong>
+                            Configuración de soporte
+                        </strong>
+
+                        <small>
+                            Estas opciones aparecen únicamente para los asesores de soporte.
+                        </small>
+
+                    </div>
+
+
+                    <span class="support-config-icon">
+                        ⚑
+                    </span>
+
+
+                </div>
+
+
+
+                <!-- DISPONIBILIDAD -->
+
+                <div class="support-config-row">
+
+
+                    <div class="support-config-info">
+
+                        <strong>
+                            Recibir tickets
+                        </strong>
+
+                        <small>
+                            Si está activo, este asesor participa automáticamente en la cola de asignación.
+                        </small>
+
+                    </div>
+
+
+                    <label
+                        class="switch"
+                        for="supportAvailableInput"
+                    >
+
+                        <input
+                            type="checkbox"
+                            id="supportAvailableInput"
+                            checked
+                        >
+
+                        <span class="switch-slider"></span>
+
+                    </label>
+
+
+                </div>
+
+
+
+                <!-- ESTADO DE COLA -->
+
+                <div class="support-queue-info">
+
+
+                    <div>
+
+                        <span class="support-queue-label">
+                            Posición en cola
+                        </span>
+
+                        <strong
+                            id="supportQueuePosition"
+                        >
+                            Automática
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="support-queue-label">
+                            Asignación
+                        </span>
+
+                        <strong>
+                            Secuencial
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="support-config-note">
+
+                    <span>ℹ️</span>
+
+                    <p>
+                        La posición en la cola será administrada automáticamente por el sistema.
+                        No necesitas configurar nada manualmente en Firebase.
+                    </p>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 CONTRASEÑA
+            ================================================== -->
+
+            <div
+                id="passwordSection"
+                class="password-section"
+            >
+
+
+                <div class="password-section-header">
+
+
+                    <div>
+
+                        <strong>
+                            Contraseña inicial
+                        </strong>
+
+                        <small>
+                            Solo se utiliza al crear el usuario.
+                        </small>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="generatePasswordButton"
+                        class="btn btn-secondary btn-small"
+                    >
+
+                        Generar
+
+                    </button>
+
+
+                </div>
+
+
+
+                <div class="password-input-wrapper">
+
+
+                    <input
+                        type="password"
+                        id="userPasswordInput"
+                        class="form-control"
+                        minlength="6"
+                        placeholder="Mínimo 6 caracteres"
+                    >
+
+
+                    <button
+                        type="button"
+                        id="togglePasswordButton"
+                        class="password-toggle"
+                    >
+
+                        Mostrar
+
+                    </button>
+
+
+                </div>
+
+
+
+                <div
+                    id="temporaryPasswordBox"
+                    class="temporary-password-box hidden"
+                >
+
+
+                    <strong>
+                        Contraseña temporal:
+                    </strong>
+
+
+                    <span id="temporaryPassword">
+                    </span>
+
+
+                    <button
+                        type="button"
+                        id="copyPasswordButton"
+                        class="btn btn-small btn-secondary"
+                    >
+
+                        Copiar
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PERMISOS
+            ================================================== -->
+
+            <div class="permissions-section">
+
+
+                <div class="permissions-header">
+
+
+                    <div>
+
+                        <strong>
+                            Permisos
+                        </strong>
+
+                        <small>
+                            Puedes personalizar los permisos del usuario.
+                        </small>
+
+                    </div>
+
+
+                    <div class="permission-actions">
+
+
+                        <button
+                            type="button"
+                            id="selectAllPermissions"
+                            class="btn btn-small btn-secondary"
+                        >
+                            Todos
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="clearPermissions"
+                            class="btn btn-small btn-secondary"
+                        >
+                            Ninguno
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div
+                    id="permissionsContainer"
+                    class="permissions-grid"
+                ></div>
+
+
+            </div>
+
+
+
+            <!-- MENSAJE FORMULARIO -->
+
+            <div
+                id="formMessage"
+                class="form-message"
+            ></div>
+
+
+
+            <!-- BOTONES -->
+
+            <div class="modal-footer">
+
+
+                <button
+                    type="button"
+                    id="cancelUserButton"
+                    class="btn btn-secondary"
+                >
+
+                    Cancelar
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    id="saveUserButton"
+                    class="btn btn-primary"
+                >
+
+                    Crear usuario
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+<!-- =========================================================
+     MODAL ELIMINAR USUARIO
+========================================================= -->
+
+<div
+    id="deleteUserModal"
+    class="modal-overlay hidden"
+>
+
+    <div
+        class="modal delete-user-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="deleteUserTitle"
+    >
+
+        <div class="delete-user-header">
+
+            <div class="delete-user-icon">!</div>
+
+            <div>
+                <span class="delete-user-eyebrow">Administración</span>
+                <h2 id="deleteUserTitle">Eliminar usuario</h2>
+                <p>Esta acción eliminará su acceso al CRM.</p>
+            </div>
+
+            <button
+                type="button"
+                id="closeDeleteUserButton"
+                class="modal-close"
+                aria-label="Cerrar"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <div class="delete-user-body">
+
+            <div class="delete-user-card">
+                <span class="delete-user-label">Usuario</span>
+                <strong id="deleteUserName">—</strong>
+                <span id="deleteUserEmail">—</span>
+            </div>
+
+            <div
+                id="deleteUserMessage"
+                class="delete-user-message"
+                role="alert"
+            ></div>
+
+            <p class="delete-user-warning">
+                El usuario no podrá volver a iniciar sesión con esta cuenta.
+                Esta acción no se puede deshacer desde este módulo.
+            </p>
+
+        </div>
+
+        <div class="delete-user-footer">
+            <button
+                type="button"
+                id="cancelDeleteUserButton"
+                class="btn btn-secondary"
+            >
+                Cancelar
+            </button>
+
+            <button
+                type="button"
+                id="confirmDeleteUserButton"
+                class="btn btn-danger"
+            >
+                Eliminar usuario
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+
+<script
+    type="module"
+    src="./js/usuarios.js?v=3"
+></script>
+
+
+</body>
+
+</html>

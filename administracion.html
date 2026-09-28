@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración | CRM</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/administracion.css?v=1">
+    <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body>
+<div class="app-shell">
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-logo">CRM</div>
+            <div>
+                <strong>Gestión Comercial</strong>
+                <small>Sistema interno</small>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section-title">PRINCIPAL</div>
+            <a href="./dashboard.html" class="nav-item"><span>▦</span>Dashboard</a>
+            <a href="./clientes.html" class="nav-item"><span>♙</span>Clientes</a>
+            <a href="./gestiones.html" class="nav-item"><span>✓</span>Gestiones</a>
+            <a href="./tickets.html" class="nav-item"><span>⚑</span>Tickets</a>
+            <a href="#" class="nav-item" data-coming-soon="Ventas"><span>$</span>Ventas</a>
+            <a href="#" class="nav-item" data-coming-soon="Seguimientos"><span>◷</span>Seguimientos</a>
+            <a href="#" class="nav-item" data-coming-soon="Reportes"><span>▥</span>Reportes</a>
+            <a href="#" class="nav-item" data-coming-soon="Chat"><span>💬</span>Chat</a>
+
+            <div class="nav-section-title">ADMINISTRACIÓN</div>
+            <a href="./administracion.html" class="nav-item active"><span>⚙️</span>Administración</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-user-card">
+                <div class="sidebar-user-avatar" id="userAvatar">AD</div>
+                <div class="sidebar-user-info">
+                    <strong id="userName">Administrador</strong>
+                    <small id="userRole">Administrador</small>
+                </div>
+            </div>
+            <button type="button" id="logoutButton" class="logout-button">Cerrar sesión</button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="page-header admin-page-header">
+            <div>
+                <div class="breadcrumb">CRM / Administración</div>
+                <h1>Administración</h1>
+                <p>Control exclusivo del administrador para limpiar datos y gestionar accesos.</p>
+            </div>
+            <div class="admin-header-badge"><span>●</span> Solo administrador</div>
+        </header>
+
+        <div id="pageMessage" class="page-message" aria-live="polite"></div>
+
+        <section class="admin-overview-grid">
+            <article class="admin-stat-card">
+                <div class="admin-stat-icon">♙</div>
+                <div><span>Clientes</span><strong id="clientsCount">0</strong></div>
+            </article>
+            <article class="admin-stat-card">
+                <div class="admin-stat-icon">⚑</div>
+                <div><span>Tickets</span><strong id="ticketsCount">0</strong></div>
+            </article>
+            <article class="admin-stat-card">
+                <div class="admin-stat-icon">✓</div>
+                <div><span>Gestiones</span><strong id="gestionesCount">0</strong></div>
+            </article>
+            <article class="admin-stat-card">
+                <div class="admin-stat-icon">👥</div>
+                <div><span>Usuarios</span><strong id="usersCount">0</strong></div>
+            </article>
+        </section>
+
+        <section class="admin-section">
+            <div class="section-heading">
+                <div>
+                    <span class="section-eyebrow">LIMPIEZA Y CONTROL</span>
+                    <h2>Datos del CRM</h2>
+                    <p>Elimina registros individuales. Cada acción requiere confirmación.</p>
+                </div>
+                <button type="button" id="refreshDataButton" class="btn btn-secondary">↻ Actualizar</button>
+            </div>
+
+            <div class="admin-tabs" role="tablist">
+                <button type="button" class="admin-tab active" data-tab="clientes">Clientes</button>
+                <button type="button" class="admin-tab" data-tab="tickets">Tickets</button>
+                <button type="button" class="admin-tab" data-tab="gestiones">Gestiones</button>
+                <button type="button" class="admin-tab" data-tab="usuarios">Usuarios</button>
+            </div>
+
+            <div class="admin-toolbar">
+                <div class="admin-search-wrap">
+                    <span>⌕</span>
+                    <input id="adminSearch" type="search" placeholder="Buscar..." autocomplete="off">
+                </div>
+                <span id="tableHint" class="table-hint">Mostrando clientes</span>
+            </div>
+
+            <div class="admin-table-wrap">
+                <table class="admin-table">
+                    <thead id="adminTableHead"></thead>
+                    <tbody id="adminTableBody">
+                        <tr><td colspan="7" class="table-loading">Cargando...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="admin-section password-management-section">
+            <div class="section-heading">
+                <div>
+                    <span class="section-eyebrow">ACCESOS</span>
+                    <h2>Usuarios y contraseñas</h2>
+                    <p>El administrador puede establecer una nueva contraseña sin enviar correo de restablecimiento.</p>
+                </div>
+            </div>
+
+            <div class="security-note">
+                <div class="security-note-icon">🔐</div>
+                <div>
+                    <strong>Las contraseñas nunca se muestran.</strong>
+                    <p>Cuando cambies una contraseña, introduces una nueva y Firebase Auth reemplaza la anterior de forma segura.</p>
+                </div>
+            </div>
+
+            <div class="admin-table-wrap">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Estado</th>
+                            <th class="actions-column">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="passwordUsersBody">
+                        <tr><td colspan="5" class="table-loading">Cargando usuarios...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</div>
+
+<div id="confirmModal" class="admin-modal-overlay hidden">
+    <div class="admin-modal confirm-modal">
+        <div class="admin-modal-header">
+            <div>
+                <span class="section-eyebrow">CONFIRMAR ACCIÓN</span>
+                <h2 id="confirmTitle">Eliminar registro</h2>
+            </div>
+            <button type="button" class="modal-close" data-close-modal="confirmModal">×</button>
+        </div>
+        <div class="admin-modal-body">
+            <div class="danger-box"><strong>Atención:</strong> esta acción no se puede deshacer desde el CRM.</div>
+            <p id="confirmText">¿Deseas continuar?</p>
+        </div>
+        <div class="admin-modal-footer">
+            <button type="button" class="btn btn-secondary" data-close-modal="confirmModal">Cancelar</button>
+            <button type="button" id="confirmActionButton" class="btn btn-danger">Eliminar</button>
+        </div>
+    </div>
+</div>
+
+<div id="passwordModal" class="admin-modal-overlay hidden">
+    <div class="admin-modal password-modal">
+        <div class="admin-modal-header">
+            <div>
+                <span class="section-eyebrow">ACCESO ADMINISTRATIVO</span>
+                <h2>Cambiar contraseña</h2>
+                <p id="passwordTargetText">Usuario</p>
+            </div>
+            <button type="button" class="modal-close" data-close-modal="passwordModal">×</button>
+        </div>
+        <form id="passwordForm">
+            <div class="admin-modal-body">
+                <div id="passwordFormMessage" class="form-message" aria-live="polite"></div>
+                <label class="admin-field">
+                    <span>Nueva contraseña *</span>
+                    <div class="password-input-wrap">
+                        <input id="newPasswordInput" type="password" minlength="8" required autocomplete="new-password" placeholder="Mínimo 8 caracteres">
+                        <button type="button" id="toggleNewPassword" class="password-toggle">Mostrar</button>
+                    </div>
+                </label>
+                <label class="admin-field">
+                    <span>Confirmar contraseña *</span>
+                    <input id="confirmPasswordInput" type="password" minlength="8" required autocomplete="new-password" placeholder="Repite la contraseña">
+                </label>
+                <div class="password-requirements">
+                    <span>✓ Mínimo 8 caracteres</span>
+                    <span>✓ Debe coincidir la confirmación</span>
+                </div>
+            </div>
+            <div class="admin-modal-footer">
+                <button type="button" class="btn btn-secondary" data-close-modal="passwordModal">Cancelar</button>
+                <button type="submit" id="savePasswordButton" class="btn btn-primary">Cambiar contraseña</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="module" src="./js/administracion.js?v=1"></script>
+</body>
+</html>
