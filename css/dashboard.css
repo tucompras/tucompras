@@ -1,0 +1,404 @@
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+
+.dashboard-content {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+/* =========================================================
+   WELCOME
+========================================================= */
+
+.welcome-panel {
+
+    display: flex;
+
+    align-items: center;
+
+    min-height: 180px;
+
+    padding: 30px;
+
+    border-radius: var(--radius-lg);
+
+    background: var(--color-primary);
+
+    color: #ffffff;
+
+}
+
+
+.welcome-panel .eyebrow {
+
+    color: rgba(255, 255, 255, 0.72);
+
+}
+
+
+.welcome-panel h2 {
+
+    font-size: 28px;
+
+    letter-spacing: -0.5px;
+
+}
+
+
+.welcome-panel p:last-child {
+
+    max-width: 700px;
+
+    margin-top: 9px;
+
+    color: rgba(255, 255, 255, 0.82);
+
+    line-height: 1.6;
+
+}
+
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+
+    margin-top: 20px;
+
+}
+
+
+.stat-card {
+
+    min-height: 150px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    padding: 20px;
+
+    background: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+
+}
+
+
+.stat-card span {
+
+    color: var(--color-text-secondary);
+
+    font-size: 13px;
+
+}
+
+
+.stat-card strong {
+
+    font-size: 30px;
+
+    letter-spacing: -0.5px;
+
+}
+
+
+.stat-card small {
+
+    color: var(--color-text-muted);
+
+    font-size: 12px;
+
+}
+
+
+
+/* =========================================================
+   DASHBOARD GRID
+========================================================= */
+
+.dashboard-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+
+    margin-top: 20px;
+
+}
+
+
+
+/* =========================================================
+   SEMÁFORO
+========================================================= */
+
+.traffic-light {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 22px;
+
+    padding: 26px 24px;
+
+}
+
+
+.traffic-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+}
+
+
+.traffic-circle {
+
+    width: 72px;
+
+    height: 72px;
+
+    min-width: 72px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    border: 8px solid rgba(255, 255, 255, 0.75);
+
+    box-shadow:
+        0 3px 10px rgba(15, 23, 42, 0.12);
+
+}
+
+
+.traffic-circle span {
+
+    position: relative;
+
+}
+
+
+.traffic-green {
+
+    background: #22c55e;
+
+    color: #ffffff;
+
+}
+
+
+.traffic-yellow {
+
+    background: #f59e0b;
+
+    color: #ffffff;
+
+}
+
+
+.traffic-red {
+
+    background: #ef4444;
+
+    color: #ffffff;
+
+}
+
+
+.traffic-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+}
+
+
+.traffic-info strong {
+
+    font-size: 15px;
+
+    color: var(--color-text-primary);
+
+}
+
+
+.traffic-info span {
+
+    font-size: 13px;
+
+    color: var(--color-text-secondary);
+
+}
+
+
+
+/* =========================================================
+   OPERACIÓN
+========================================================= */
+
+.dashboard-operation {
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 10px 24px 24px;
+
+}
+
+
+.operation-row {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    min-height: 64px;
+
+    border-bottom: 1px solid var(--color-border);
+
+}
+
+
+.operation-row:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.operation-row span {
+
+    color: var(--color-text-secondary);
+
+    font-size: 14px;
+
+}
+
+
+.operation-row strong {
+
+    min-width: 42px;
+
+    text-align: right;
+
+    font-size: 22px;
+
+}
+
+
+
+/* =========================================================
+   ESTADOS
+========================================================= */
+
+.hidden {
+
+    display: none !important;
+
+}
+
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .stats-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .dashboard-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .stats-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .welcome-panel {
+
+        padding: 24px;
+
+    }
+
+
+    .welcome-panel h2 {
+
+        font-size: 24px;
+
+    }
+
+
+    .traffic-circle {
+
+        width: 62px;
+
+        height: 62px;
+
+        min-width: 62px;
+
+    }
+
+}

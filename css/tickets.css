@@ -1,0 +1,841 @@
+/* =========================================================
+   TICKETS — ESTILO VISUAL DEL MODULO
+   No modifica la logica JS ni el formulario funcional.
+========================================================= */
+
+.main-content{min-width:0}
+
+.page-header{min-height:92px;padding:24px 32px 22px;border-bottom:1px solid #e5e7eb;background:#fff}
+.page-breadcrumb{margin-bottom:5px;color:#7c8aa0;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.page-header h1{margin:0;color:#0f172a;font-size:30px;line-height:1.15;font-weight:800}
+.page-header p{margin:7px 0 0;color:#64748b;font-size:14px}
+.page-header-actions{display:flex;align-items:center;gap:10px}
+
+.ticket-summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;padding:24px 32px 8px}
+.summary-card{position:relative;display:flex;align-items:center;gap:15px;min-height:102px;padding:18px 20px;border:1px solid #e2e8f0;border-radius:16px;background:#fff;box-shadow:0 5px 18px rgba(15,23,42,.05);overflow:hidden;transition:transform .18s ease,box-shadow .18s ease}
+.summary-card::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#2563eb}
+.summary-card:nth-child(2)::after{background:#3b82f6}
+.summary-card:nth-child(3)::after{background:#f59e0b}
+.summary-card:nth-child(4)::after{background:#22c55e}
+.summary-card:hover{transform:translateY(-2px);box-shadow:0 9px 24px rgba(15,23,42,.08)}
+.summary-icon{flex:0 0 44px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:#eff6ff;color:#2563eb;font-size:20px;font-weight:700}
+.summary-card:nth-child(3) .summary-icon{background:#fff7ed;color:#ea580c}
+.summary-card:nth-child(4) .summary-icon{background:#f0fdf4;color:#16a34a}
+.summary-label{display:block;margin-bottom:4px;color:#64748b;font-size:12px;font-weight:700;letter-spacing:.03em}
+.summary-value{display:block;color:#0f172a;font-size:27px;line-height:1}
+
+.tickets-panel{margin:16px 32px 32px;padding:0;border:1px solid #e2e8f0;border-radius:18px;background:#fff;box-shadow:0 6px 24px rgba(15,23,42,.055);overflow:hidden}
+.tickets-panel .panel-header{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 24px 18px;border-bottom:1px solid #eef2f7}
+.tickets-panel .panel-header h2{margin:0;color:#0f172a;font-size:19px;font-weight:800}
+.tickets-panel .panel-header p{margin:5px 0 0;color:#94a3b8;font-size:13px}
+
+.ticket-filters{display:grid;grid-template-columns:minmax(280px,1.8fr) minmax(170px,.7fr) minmax(170px,.7fr);gap:14px;padding:18px 24px 16px;background:#fbfcfe;border-bottom:1px solid #eef2f7}
+.filter-group{min-width:0}
+.filter-group label{display:block;margin:0 0 7px;color:#475569;font-size:12px;font-weight:700}
+.filter-group .form-control{width:100%;height:43px;padding:0 13px;box-sizing:border-box;border:1px solid #dbe3ee;border-radius:10px;background:#fff;color:#0f172a;font-size:14px;outline:none;transition:border-color .15s ease,box-shadow .15s ease}
+.filter-group .form-control::placeholder{color:#a0aec0}
+.filter-group .form-control:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.10)}
+
+.ticket-visual-legend{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px 24px;padding:12px 24px;background:#fff;border-bottom:1px solid #eef2f7}
+.legend-group{display:flex;align-items:center;flex-wrap:wrap;gap:8px 13px}
+.legend-title{margin-right:3px;color:#64748b;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.legend-item{display:inline-flex;align-items:center;gap:6px;color:#64748b;font-size:12px;white-space:nowrap}
+.legend-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.dot-baja,.dot-resuelto{background:#22c55e}.dot-media{background:#eab308}.dot-alta,.dot-proceso{background:#f59e0b}.dot-urgente,.dot-escalado{background:#ef4444}.dot-nuevo{background:#3b82f6}
+
+.table-wrapper{width:100%;overflow-x:auto;background:#fff}
+.tickets-table{width:100%;min-width:1120px;border-collapse:separate;border-spacing:0;table-layout:auto}
+.tickets-table thead th{padding:13px 16px;border-bottom:1px solid #e2e8f0;background:#f8fafc;color:#64748b;font-size:11px;font-weight:800;letter-spacing:.055em;line-height:1.2;text-align:left;text-transform:uppercase;white-space:nowrap}
+.tickets-table tbody td{padding:15px 16px;border-bottom:1px solid #edf1f5;color:#334155;font-size:13px;vertical-align:middle;white-space:nowrap}
+.tickets-table tbody tr{transition:background .15s ease}.tickets-table tbody tr:hover{background:#f8fbff}.tickets-table tbody tr:last-child td{border-bottom:0}
+.tickets-table th:first-child,.tickets-table td:first-child{padding-left:24px}.tickets-table th:last-child,.tickets-table td:last-child{padding-right:24px}
+.tickets-table td:first-child strong{display:inline-flex;align-items:center;min-height:28px;padding:4px 9px;border-radius:8px;background:#eff6ff;color:#1d4ed8;font-size:12px;font-weight:800}
+.tickets-table td:nth-child(2){color:#0f172a;font-weight:700}.tickets-table td:nth-child(3){max-width:240px;color:#475569;white-space:normal}.tickets-table td:nth-child(6),.tickets-table td:nth-child(7){color:#475569;font-weight:600}.tickets-table td:nth-child(8){color:#64748b;font-size:12px}
+.table-loading{padding:42px 24px!important;color:#94a3b8!important;text-align:center!important}
+
+.ticket-priority,.ticket-status{position:relative;display:inline-flex;align-items:center;gap:7px;min-height:29px;padding:5px 10px 5px 9px;border:1px solid transparent;border-radius:999px;font-size:11px;font-weight:800;line-height:1;white-space:nowrap}
+.ticket-priority::before,.ticket-status::before{content:"";width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:currentColor}
+.priority-baja{color:#15803d!important;background:#f0fdf4;border-color:#bbf7d0}.priority-media{color:#a16207!important;background:#fefce8;border-color:#fde68a}.priority-alta{color:#c2410c!important;background:#fff7ed;border-color:#fed7aa}.priority-urgente{color:#b91c1c!important;background:#fef2f2;border-color:#fecaca}
+.status-nuevo{color:#1d4ed8!important;background:#eff6ff;border-color:#bfdbfe}.status-asignado{color:#a16207!important;background:#fefce8;border-color:#fde68a}.status-en_proceso{color:#c2410c!important;background:#fff7ed;border-color:#fed7aa}.status-esperando_cliente{color:#a16207!important;background:#fefce8;border-color:#fde68a}.status-escalado{color:#b91c1c!important;background:#fef2f2;border-color:#fecaca}.status-resuelto{color:#15803d!important;background:#f0fdf4;border-color:#bbf7d0}.status-cerrado{color:#475569!important;background:#f1f5f9;border-color:#cbd5e1}
+
+.tickets-table .btn-small{min-height:34px;padding:7px 12px;border:1px solid #dbe3ee;border-radius:9px;background:#fff;color:#1d4ed8;font-size:12px;font-weight:700;cursor:pointer;transition:background .15s ease,border-color .15s ease,transform .15s ease}.tickets-table .btn-small:hover{background:#eff6ff;border-color:#bfdbfe;transform:translateY(-1px)}
+.ticket-empty{padding:46px 24px;color:#94a3b8;text-align:center;font-size:14px}
+#ticketPageMessage{margin:16px 32px 0}
+
+/* MODALES — se conserva el comportamiento existente */
+.hidden{display:none!important}.modal-overlay{position:fixed!important;inset:0!important;z-index:9999!important;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(15,23,42,.62);overflow-y:auto}.modal-overlay.hidden{display:none!important}.modal{position:relative;width:min(900px,100%);margin:auto;background:#fff;border-radius:18px;box-shadow:0 25px 70px rgba(15,23,42,.30);overflow:hidden}.ticket-modal{width:min(850px,100%)}.ticket-detail-modal{width:min(950px,100%);max-height:calc(100vh - 48px);overflow-y:auto}
+.modal-header{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:24px 26px;background:#fff;border-bottom:1px solid #e5e7eb}.modal-header h2{margin:0 0 6px;font-size:21px;color:#111827}.modal-header p{margin:0;color:#6b7280;font-size:14px}.modal-close{width:38px;height:38px;flex:0 0 38px;border:0;border-radius:9px;background:#f1f5f9;color:#334155;font-size:25px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}.modal-close:hover{background:#e2e8f0}.ticket-modal form{padding:26px}.ticket-modal .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.ticket-modal .full-width{grid-column:1/-1}.ticket-modal .form-group{min-width:0}.ticket-modal label{display:block;margin-bottom:7px;font-size:13px;font-weight:700;color:#374151}.ticket-modal .form-control{width:100%;min-height:44px;padding:10px 12px;border:1px solid #d1d5db;border-radius:9px;background:#fff;color:#111827;font-size:14px;box-sizing:border-box;outline:none}.ticket-modal textarea.form-control{min-height:130px;resize:vertical}.ticket-modal .form-control:focus{border-color:var(--color-primary, #2563eb);box-shadow:0 0 0 3px rgba(37,99,235,.10)}.ticket-detail-body{padding:26px}.modal-footer{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin-top:25px;padding-top:20px;border-top:1px solid #e5e7eb}
+
+@media(max-width:1100px){.ticket-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ticket-filters{grid-template-columns:1fr 1fr}.search-filter{grid-column:1/-1}}
+@media(max-width:760px){.page-header{padding:20px}.page-header-actions{width:100%;margin-top:16px}.page-header-actions .btn{flex:1}.ticket-summary-grid{grid-template-columns:1fr;padding:18px 20px 4px}.tickets-panel{margin:16px 20px 24px}.ticket-filters{grid-template-columns:1fr;padding:16px}.search-filter{grid-column:auto}.ticket-visual-legend{padding:12px 16px}.tickets-panel .panel-header{padding:18px 16px}#ticketPageMessage{margin-left:20px;margin-right:20px}.ticket-modal .form-grid{grid-template-columns:1fr}.ticket-modal .full-width{grid-column:auto}.modal-overlay{padding:12px}.ticket-modal form{padding:18px}}
+
+/* =========================================================
+   AUDITORÍA Y ACCIONES — añadido sin alterar el diseño base
+========================================================= */
+
+.ticket-number-link {
+    display: inline-flex;
+    align-items: center;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.ticket-number-link:hover {
+    text-decoration: underline;
+}
+
+.table-primary {
+    color: #172033;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.table-secondary {
+    margin-top: 4px;
+    color: #94a3b8;
+    font-size: 12px;
+    line-height: 1.35;
+}
+
+.person-cell {
+    color: #475569;
+    font-weight: 600;
+}
+
+.pending-support {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #b45309;
+    font-weight: 700;
+}
+
+.pending-support::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #f59e0b;
+    flex: 0 0 auto;
+}
+
+/* =========================================================
+   SEMÁFORO — PRIORIDAD
+========================================================= */
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-width: 92px;
+    min-height: 30px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.status-badge::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex: 0 0 auto;
+}
+
+/* Prioridad baja — verde */
+.status-badge.priority-low {
+    color: #166534;
+    background: #ecfdf3;
+    border-color: #bbf7d0;
+}
+
+.status-badge.priority-low::before {
+    background: #22c55e;
+}
+
+/* Prioridad media — amarillo */
+.status-badge.priority-medium {
+    color: #92400e;
+    background: #fffbeb;
+    border-color: #fde68a;
+}
+
+.status-badge.priority-medium::before {
+    background: #f59e0b;
+}
+
+/* Prioridad alta — naranja */
+.status-badge.priority-high {
+    color: #c2410c;
+    background: #fff7ed;
+    border-color: #fed7aa;
+}
+
+.status-badge.priority-high::before {
+    background: #f97316;
+}
+
+/* Prioridad urgente — rojo */
+.status-badge.priority-urgent {
+    color: #b91c1c;
+    background: #fef2f2;
+    border-color: #fecaca;
+}
+
+.status-badge.priority-urgent::before {
+    background: #ef4444;
+}
+
+/* =========================================================
+   SEMÁFORO — ESTADO
+========================================================= */
+
+.status-badge.status-new {
+    color: #1d4ed8;
+    background: #eff6ff;
+    border-color: #bfdbfe;
+}
+
+.status-badge.status-new::before {
+    background: #3b82f6;
+}
+
+.status-badge.status-assigned {
+    color: #6d28d9;
+    background: #f5f3ff;
+    border-color: #ddd6fe;
+}
+
+.status-badge.status-assigned::before {
+    background: #8b5cf6;
+}
+
+.status-badge.status-progress {
+    color: #0369a1;
+    background: #f0f9ff;
+    border-color: #bae6fd;
+}
+
+.status-badge.status-progress::before {
+    background: #0ea5e9;
+}
+
+.status-badge.status-waiting {
+    color: #92400e;
+    background: #fffbeb;
+    border-color: #fde68a;
+}
+
+.status-badge.status-waiting::before {
+    background: #f59e0b;
+}
+
+.status-badge.status-escalated {
+    color: #c2410c;
+    background: #fff7ed;
+    border-color: #fed7aa;
+}
+
+.status-badge.status-escalated::before {
+    background: #f97316;
+}
+
+.status-badge.status-resolved {
+    color: #166534;
+    background: #ecfdf3;
+    border-color: #bbf7d0;
+}
+
+.status-badge.status-resolved::before {
+    background: #22c55e;
+}
+
+.status-badge.status-closed {
+    color: #475569;
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+.status-badge.status-closed::before {
+    background: #64748b;
+}
+
+.status-badge.priority-default,
+.status-badge.status-default {
+    color: #475569;
+    background: #f8fafc;
+    border-color: #e2e8f0;
+}
+
+.status-badge.priority-default::before,
+.status-badge.status-default::before {
+    background: #94a3b8;
+}
+
+/* =========================================================
+   ACCIONES
+========================================================= */
+
+.ticket-actions-cell {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-wrap: wrap;
+}
+
+.table-action-button {
+    min-height: 34px;
+    padding: 7px 12px;
+    border: 1px solid #dbe3ec;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #334155;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .18s ease;
+}
+
+.table-action-button:hover {
+    border-color: #2563eb;
+    color: #2563eb;
+    background: #eff6ff;
+}
+
+.ticket-delete-button {
+    color: #b91c1c;
+    border-color: #fecaca;
+    background: #fffafa;
+}
+
+.ticket-delete-button:hover {
+    color: #991b1b;
+    border-color: #fca5a5;
+    background: #fef2f2;
+}
+
+.table-empty {
+    padding: 44px 20px !important;
+    color: #64748b;
+    text-align: center;
+}
+
+/* =========================================================
+   HISTORIAL DE AUDITORÍA
+========================================================= */
+
+.history-section {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.history-section h3 {
+    margin: 0;
+    color: #172033;
+    font-size: 17px;
+}
+
+.history-section p {
+    margin: 5px 0 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.ticket-history {
+    position: relative;
+    margin-top: 18px;
+    padding-left: 22px;
+}
+
+.ticket-history::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 5px;
+    width: 1px;
+    background: #dbe3ec;
+}
+
+.history-item {
+    position: relative;
+    display: flex;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.history-dot {
+    position: absolute;
+    top: 5px;
+    left: -22px;
+    width: 11px;
+    height: 11px;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    background: #2563eb;
+    box-shadow: 0 0 0 1px #bfdbfe;
+    z-index: 1;
+}
+
+.history-content {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: #f8fafc;
+}
+
+.history-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+}
+
+.history-top strong {
+    color: #1e293b;
+    font-size: 13px;
+}
+
+.history-top span {
+    color: #94a3b8;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.history-content p {
+    margin: 7px 0 0;
+    color: #475569;
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+.history-empty,
+.history-loading {
+    padding: 22px;
+    border: 1px dashed #cbd5e1;
+    border-radius: 10px;
+    color: #64748b;
+    background: #f8fafc;
+    text-align: center;
+    font-size: 13px;
+}
+
+@media (max-width: 900px) {
+
+    .tickets-table {
+        min-width: 980px;
+    }
+
+    .status-badge {
+        min-width: 84px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .history-top {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    .ticket-actions-cell {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+
+/* =========================================================
+   SOPORTE — CLIENTES ASIGNADOS / RESPUESTA / DEVOLUCIÓN
+   Agregado sin modificar los estilos base.
+========================================================= */
+
+.assigned-clients-card::after { background: #7c3aed !important; }
+.assigned-clients-card .summary-icon { background: #f5f3ff; color: #7c3aed; }
+
+.support-resolution-section,
+.return-ticket-section {
+    margin-top: 26px;
+    padding: 20px;
+    border: 1px solid #dbe3ee;
+    border-radius: 14px;
+    background: #f8fafc;
+}
+
+.support-resolution-section.hidden,
+.return-ticket-section.hidden { display: none !important; }
+
+.support-action-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+
+.support-action-header h3 { margin: 4px 0 5px; color: #0f172a; font-size: 16px; font-weight: 800; }
+.support-action-header p { margin: 0; color: #64748b; font-size: 13px; line-height: 1.5; }
+
+.support-resolution-input,
+.return-ticket-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    background: #fff;
+    color: #0f172a;
+    font: inherit;
+    line-height: 1.5;
+    resize: vertical;
+    outline: none;
+}
+
+.support-resolution-input:focus,
+.return-ticket-input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37,99,235,.10);
+}
+
+.return-ticket-section { border-color: #fecaca; background: #fff7f7; }
+.return-header h3 { color: #991b1b; }
+.return-header p { color: #7f1d1d; }
+
+.support-return-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.btn-danger {
+    min-height: 40px;
+    padding: 8px 14px;
+    border: 1px solid #dc2626;
+    border-radius: 9px;
+    background: #dc2626;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background .15s ease, border-color .15s ease, transform .15s ease;
+}
+
+.btn-danger:hover { background: #b91c1c; border-color: #b91c1c; transform: translateY(-1px); }
+.support-return-open-button { display: none; }
+
+.status-badge.status-returned { color: #b91c1c; background: #fef2f2; border-color: #fecaca; }
+.status-badge.status-returned::before { background: #ef4444; }
+
+@media (max-width: 1100px) {
+    .ticket-summary-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+}
+@media (max-width: 760px) {
+    .ticket-summary-grid { grid-template-columns: 1fr; }
+    .support-return-actions { flex-direction: column; align-items: stretch; }
+    .support-return-actions .btn { width: 100%; }
+}
+
+
+/* =========================================================
+   CONTADORES PERSONALES — ASESOR / SOPORTE
+========================================================= */
+
+.role-ticket-card.hidden {
+    display: none !important;
+}
+
+.returned-tickets-card::after {
+    background: #ef4444 !important;
+}
+
+.returned-tickets-card .summary-icon {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.returned-tickets-card .summary-label {
+    color: #991b1b;
+}
+
+
+/* =========================================================
+   CONTROL POR ROL — CONTADORES
+========================================================= */
+
+.assigned-clients-card::after {
+    background: #7c3aed !important;
+}
+
+.returned-tickets-card::after {
+    background: #ef4444 !important;
+}
+
+.returned-tickets-card .summary-icon {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.returned-tickets-card .summary-label {
+    color: #991b1b;
+}
+
+.dot-devuelto {
+    background: #ef4444;
+}
+
+
+/* =========================================================
+   REPARACIÓN — AVISO + IMEI
+========================================================= */
+
+.ticket-repair-warning {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    padding: 16px 48px 16px 16px;
+    border: 1px solid #fecaca;
+    border-left: 4px solid #dc2626;
+    border-radius: 12px;
+    background: #fef2f2;
+    color: #7f1d1d;
+}
+
+.ticket-repair-warning.hidden,
+.ticket-repair-detail-section.hidden,
+.support-readonly-section.hidden {
+    display: none !important;
+}
+
+.ticket-repair-warning-icon {
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #dc2626;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.ticket-repair-warning-content {
+    min-width: 0;
+}
+
+.ticket-repair-warning-content strong {
+    display: block;
+    color: #991b1b;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.ticket-repair-warning-content p {
+    margin: 5px 0 0;
+    color: #7f1d1d;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+.ticket-repair-warning-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    background: #fff;
+    color: #991b1b;
+    font-size: 21px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.ticket-repair-warning-close:hover {
+    background: #fff1f2;
+    border-color: #fca5a5;
+}
+
+.ticket-repair-detail-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 190px;
+    gap: 20px;
+    align-items: center;
+    margin-top: 24px;
+    padding: 18px;
+    border: 1px solid #fecaca;
+    border-radius: 14px;
+    background: #fff7f7;
+}
+
+.ticket-repair-detail-section h3 {
+    margin: 4px 0 5px;
+    color: #991b1b;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.ticket-repair-detail-section p {
+    margin: 0;
+    color: #7f1d1d;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.ticket-repair-detail-imei {
+    padding: 14px;
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.ticket-repair-detail-imei strong {
+    display: block;
+    margin-top: 4px;
+    color: #7f1d1d;
+    font-size: 14px;
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   SOPORTE — VISTA DE SOLO LECTURA PARA ASESOR
+========================================================= */
+
+.support-readonly-section {
+    margin-top: 26px;
+    padding: 20px;
+    border: 1px solid #dbe3ee;
+    border-radius: 14px;
+    background: #f8fafc;
+}
+
+.support-readonly-status {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 5px 11px;
+    border: 1px solid #dbe3ee;
+    border-radius: 999px;
+    background: #fff;
+    color: #475569;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.support-readonly-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(240px, 1fr);
+    gap: 14px;
+}
+
+.support-readonly-block {
+    min-width: 0;
+    padding: 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.support-readonly-block:first-child {
+    grid-row: span 2;
+}
+
+.support-readonly-text {
+    margin-top: 7px;
+    min-height: 24px;
+    color: #334155;
+    font-size: 13px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.support-form-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 6px 11px;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    background: #eff6ff;
+    color: #1d4ed8;
+    font-size: 12px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.support-form-link:hover {
+    background: #dbeafe;
+    border-color: #93c5fd;
+}
+
+.support-form-link-field {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.support-form-link-field label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 7px;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.field-optional {
+    display: inline-flex;
+    align-items: center;
+    min-height: 20px;
+    padding: 2px 7px;
+    border-radius: 999px;
+    background: #f1f5f9;
+    color: #64748b;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.support-form-link-field .form-help {
+    display: block;
+    margin-top: 6px;
+}
+
+@media (max-width: 760px) {
+    .ticket-repair-detail-section {
+        grid-template-columns: 1fr;
+    }
+
+    .support-readonly-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .support-readonly-block:first-child {
+        grid-row: auto;
+    }
+}
