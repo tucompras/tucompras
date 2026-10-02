@@ -18,10 +18,7 @@
     <link rel="stylesheet" href="./css/components.css">
     <link rel="stylesheet" href="./css/clientes.css">
     <link rel="stylesheet" href="./css/responsive.css">
-
-
 </head>
-
 
 <body>
 
@@ -33,9 +30,9 @@
 
     <aside class="sidebar">
 
-        <div class="brand">
-            <img src="./assets/img/logo-tucompras-icon.png" alt="Tu Compras" class="brand-logo">
-            <div class="brand-name">Gestión</div>
+        <div class="sidebar-brand">
+            <div class="brand-logo">CRM</div>
+            <span>Gestión</span>
         </div>
 
         <nav class="sidebar-nav">
@@ -75,18 +72,6 @@
                 Reportes
             </a>
 
-            <a 
-                href="./comandos.html" 
-                class="nav-item">
-                <span>⌘</span>
-                Comandos
-            </a>
-
-            <a href="#" class="nav-item" data-coming-soon="Chat">
-                <span>💬</span>
-                Chat
-            </a>
-
             <a
                 href="./usuarios.html"
                 id="usersMenuItem"
@@ -94,6 +79,11 @@
             >
                 <span>⚙️</span>
                 Usuarios
+            </a>
+
+            <a href="#" class="nav-item" data-coming-soon="Chat">
+                <span>💬</span>
+                Chat
             </a>
 
         </nav>
@@ -163,7 +153,7 @@
 
         <!-- CONTENIDO -->
 
-        <section class="page-content clientes-page">
+        <section class="page-content">
 
             <!-- ENCABEZADO -->
 
@@ -171,12 +161,21 @@
 
                 <div>
 
+                    <p class="eyebrow">
+                        Base de clientes
+                    </p>
+
+                    <h2>
+                        Clientes
+                    </h2>
+
                     <p class="page-description">
-                         Registra y administra tus clientes.
+                        Registra y administra tus clientes.
                         El número de WhatsApp identifica de forma única al cliente.
                     </p>
 
                 </div>
+
 
                 <div class="page-actions">
 
@@ -210,22 +209,26 @@
             ></div>
 
 
-            <!-- BUSCADOR -->
+            <!-- FILTROS -->
 
-            <section class="search-panel">
+            <section class="panel">
 
-                <div class="search-field">
+                <div class="filters-grid">
 
-                    <label for="searchClient">
-                        Buscar cliente
-                    </label>
+                    <div class="field field-full">
 
-                    <input
-                        type="search"
-                        id="searchClient"
-                        placeholder="Buscar por nombre, WhatsApp, empresa o ciudad..."
-                        autocomplete="off"
-                    >
+                        <label for="searchClient">
+                            Buscar cliente
+                        </label>
+
+                        <input
+                            type="search"
+                            id="searchClient"
+                            placeholder="Buscar por nombre, WhatsApp, empresa, ciudad..."
+                            autocomplete="off"
+                        >
+
+                    </div>
 
                 </div>
 
@@ -234,9 +237,9 @@
 
             <!-- TABLA -->
 
-            <section class="clients-panel">
+            <section class="panel">
 
-                <div class="clients-panel-header">
+                <div class="panel-header">
 
                     <div>
 
@@ -245,12 +248,12 @@
                         </p>
 
                         <h3>
-                            Listado de clientes
+                            Base de clientes
                         </h3>
 
                     </div>
 
-                    <div class="clients-count">
+                    <div>
 
                         <span id="clientCounter">
                             Clientes encontrados: 0
@@ -267,48 +270,48 @@
 
                         <thead>
 
-                            <tr>
+                        <tr>
 
-                                <th>
-                                    Cliente
-                                </th>
+                            <th>
+                                Cliente
+                            </th>
 
-                                <th>
-                                    WhatsApp
-                                </th>
+                            <th>
+                                WhatsApp
+                            </th>
 
-                                <th>
-                                    Empresa
-                                </th>
+                            <th>
+                                Empresa
+                            </th>
 
-                                <th>
-                                    Ciudad
-                                </th>
+                            <th>
+                                Ciudad
+                            </th>
 
-                                <th>
-                                    Asesor creador
-                                </th>
+                            <th>
+                                Asesor creador
+                            </th>
 
-                                <th>
-                                    Acciones
-                                </th>
+                            <th>
+                                Acciones
+                            </th>
 
-                            </tr>
+                        </tr>
 
                         </thead>
 
                         <tbody id="clientsTableBody">
 
-                            <tr>
+                        <tr>
 
-                                <td
-                                    colspan="6"
-                                    class="table-empty"
-                                >
-                                    Cargando clientes...
-                                </td>
+                            <td
+                                colspan="6"
+                                class="table-empty"
+                            >
+                                Cargando clientes...
+                            </td>
 
-                            </tr>
+                        </tr>
 
                         </tbody>
 
@@ -331,35 +334,38 @@
 
 <div
     id="clientModal"
-    class="clientes-page-modal hidden"
+    class="modal-overlay hidden"
 >
 
     <div
-        class="client-modal-box"
+        class="modal modal-large"
         role="dialog"
         aria-modal="true"
         aria-labelledby="clientModalTitle"
     >
 
-        <div class="client-modal-header">
+        <div class="modal-header">
 
-            <p class="eyebrow">
-                Base de clientes
-            </p>
+            <div>
 
-            <h2 id="clientModalTitle">
-                Crear cliente
-            </h2>
+                <p class="eyebrow">
+                    Base de clientes
+                </p>
 
-            <p>
-                El número de WhatsApp o el usuario / nombre de WhatsApp
-                identifica al cliente.
-            </p>
+                <h2 id="clientModalTitle">
+                    Crear cliente
+                </h2>
+
+                <p>
+                    Número de WhatsApp o usuario / nombre de WhatsApp: debes ingresar al menos uno.
+                </p>
+
+            </div>
 
             <button
                 type="button"
                 id="closeClientModal"
-                class="modal-close-fixed"
+                class="modal-close"
                 aria-label="Cerrar"
             >
                 ×
@@ -370,7 +376,7 @@
 
         <form
             id="clientForm"
-            class="client-modal-body"
+            class="modal-body"
         >
 
             <input
@@ -387,63 +393,55 @@
             ></div>
 
 
-            <div class="form-grid-modern">
+            <div class="form-grid">
 
-                <!-- IDENTIFICADORES -->
+                <!-- WHATSAPP -->
 
-                <div class="identifier-box">
+                <div class="field">
 
-                    <div class="identifier-title">
-                        Datos para identificar al cliente
-                    </div>
+                    <label for="whatsapp">
+                        Número de WhatsApp *
+                    </label>
 
-                    <div class="field-modern">
+                    <input
+                        type="tel"
+                        id="whatsapp"
+                        placeholder="Ej: 3001234567"
+                        autocomplete="tel"
+                    >
 
-                        <label for="whatsapp">
-                            Número de WhatsApp
-                            <span class="required-mark">*</span>
-                        </label>
+                    <small>
+                        Ingresa el número si lo tienes. Es uno de los identificadores del cliente.
+                    </small>
 
-                        <input
-                            type="tel"
-                            id="whatsapp"
-                            placeholder="Ej. 300 123 4567"
-                            autocomplete="tel"
-                        >
-
-                        <small>
-                            Puedes registrar el número si el cliente lo proporciona.
-                        </small>
-
-                    </div>
+                </div>
 
 
-                    <div class="field-modern">
+                <!-- NOMBRE WHATSAPP -->
 
-                        <label for="nombreWhatsapp">
-                            Usuario / nombre de WhatsApp
-                            <span class="required-mark">*</span>
-                        </label>
+                <div class="field">
 
-                        <input
-                            type="text"
-                            id="nombreWhatsapp"
-                            placeholder="Ej. Juan Pérez"
-                            autocomplete="name"
-                        >
+                    <label for="nombreWhatsapp">
+                        Usuario / nombre de WhatsApp *
+                    </label>
 
-                        <small>
-                            Puedes utilizar este dato si no tienes el número.
-                        </small>
+                    <input
+                        type="text"
+                        id="nombreWhatsapp"
+                        placeholder="Ej: Juan Pérez"
+                        autocomplete="name"
+                    >
 
-                    </div>
+                    <small>
+                        Puedes usar este dato si no tienes el número.
+                    </small>
 
                 </div>
 
 
                 <!-- NOMBRE -->
 
-                <div class="field-modern">
+                <div class="field">
 
                     <label for="nombre">
                         Nombre completo
@@ -460,7 +458,7 @@
 
                 <!-- EMPRESA -->
 
-                <div class="field-modern">
+                <div class="field">
 
                     <label for="empresa">
                         Empresa
@@ -469,7 +467,7 @@
                     <input
                         type="text"
                         id="empresa"
-                        placeholder="Nombre de la empresa"
+                        placeholder="Empresa"
                     >
 
                 </div>
@@ -477,7 +475,7 @@
 
                 <!-- TIPO IDENTIFICACION -->
 
-                <div class="field-modern">
+                <div class="field">
 
                     <label for="tipoIdentificacion">
                         Tipo de identificación
@@ -512,7 +510,7 @@
 
                 <!-- IDENTIFICACION -->
 
-                <div class="field-modern">
+                <div class="field">
 
                     <label for="identificacion">
                         Identificación
@@ -529,7 +527,7 @@
 
                 <!-- TELEFONO -->
 
-                <div class="field-modern">
+                <div class="field">
 
                     <label for="telefono">
                         Teléfono
@@ -546,7 +544,7 @@
 
                 <!-- EMAIL -->
 
-                <div class="field-modern">
+                <div class="field">
 
                     <label for="email">
                         Correo electrónico
@@ -563,7 +561,7 @@
 
                 <!-- CIUDAD -->
 
-                <div class="field-modern">
+                <div class="field">
 
                     <label for="ciudad">
                         Ciudad
@@ -580,7 +578,7 @@
 
                 <!-- DIRECCION -->
 
-                <div class="field-modern">
+                <div class="field">
 
                     <label for="direccion">
                         Dirección
@@ -597,21 +595,20 @@
             </div>
 
 
-            <div class="form-help-modern">
+            <div class="form-help">
 
                 <strong>
-                    Asesor comercial
+                    Asesor comercial:
                 </strong>
 
                 <span>
-                    El cliente quedará asociado automáticamente al usuario
-                    que lo registre.
+                    Se asignará automáticamente al usuario que cree el cliente.
                 </span>
 
             </div>
 
 
-            <div class="client-modal-footer">
+            <div class="modal-footer">
 
                 <button
                     type="button"
@@ -644,30 +641,34 @@
 
 <div
     id="duplicateClientModal"
-    class="clientes-page-modal hidden"
+    class="modal-overlay hidden"
 >
 
     <div
-        class="duplicate-modal-modern"
+        class="modal duplicate-modal"
         role="dialog"
         aria-modal="true"
         aria-labelledby="duplicateClientTitle"
     >
 
-        <div class="duplicate-header">
+        <div class="modal-header">
 
-            <p class="eyebrow">
-                Cliente existente
-            </p>
+            <div>
 
-            <h2 id="duplicateClientTitle">
-                Este cliente ya existe
-            </h2>
+                <p class="eyebrow">
+                    Cliente existente
+                </p>
+
+                <h2 id="duplicateClientTitle">
+                    Este cliente ya existe
+                </h2>
+
+            </div>
 
             <button
                 type="button"
                 id="closeDuplicateModal"
-                class="duplicate-close"
+                class="modal-close"
                 aria-label="Cerrar"
             >
                 ×
@@ -676,22 +677,22 @@
         </div>
 
 
-        <div class="duplicate-body">
+        <div class="modal-body">
 
-            <div class="duplicate-intro">
+            <div class="duplicate-warning">
 
-                <div class="duplicate-icon">
+                <div class="duplicate-warning-icon">
                     !
                 </div>
 
                 <div>
 
                     <h3>
-                        Cliente registrado
+                        No se creó un cliente duplicado
                     </h3>
 
                     <p>
-                        Encontramos un cliente con los datos ingresados.
+                        El número o usuario / nombre de WhatsApp ingresado ya está registrado.
                     </p>
 
                 </div>
@@ -699,9 +700,9 @@
             </div>
 
 
-            <div class="duplicate-client-card-modern">
+            <div class="duplicate-client-card">
 
-                <div class="duplicate-client-row-modern">
+                <div class="duplicate-client-row">
 
                     <span>
                         Cliente
@@ -714,7 +715,7 @@
                 </div>
 
 
-                <div class="duplicate-client-row-modern">
+                <div class="duplicate-client-row">
 
                     <span>
                         WhatsApp
@@ -727,7 +728,7 @@
                 </div>
 
 
-                <div class="duplicate-client-row-modern">
+                <div class="duplicate-client-row">
 
                     <span>
                         Empresa
@@ -740,7 +741,7 @@
                 </div>
 
 
-                <div class="duplicate-client-row-modern">
+                <div class="duplicate-client-row">
 
                     <span>
                         Asesor creador
@@ -755,13 +756,12 @@
             </div>
 
 
-            <p class="duplicate-help-modern">
-                Puedes ir directamente a Gestión para registrar una nueva
-                actividad con este cliente.
+            <p class="duplicate-help">
+                No se creó un cliente nuevo. Puedes ir directamente a Gestión y registrar una nueva gestión para este cliente.
             </p>
 
 
-            <div class="duplicate-footer">
+            <div class="modal-footer">
 
                 <button
                     type="button"
@@ -790,7 +790,7 @@
 
 <script
     type="module"
-    src="./js/clientes.js?v=13"
+    src="./js/clientes.js?v=11"
 ></script>
 
 </body>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tabla de precios para asesores">
+    <title>Tabla de precios | Tu Compras</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/precios.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body>
+<div class="app">
+    <aside class="sidebar">
+        <div class="sidebar-brand"><div class="brand"><img src="./assets/img/logo-tucompras-icon.png?v=2" alt="Tu Compras" class="brand-logo"></div><span>Gestión</span></div>
+        <nav class="sidebar-nav">
+            <a href="./dashboard.html" class="nav-item"><span>▦</span>Dashboard</a>
+            <a href="./clientes.html" class="nav-item"><span>♙</span>Clientes</a>
+            <a href="./gestiones.html" class="nav-item"><span>✓</span>Gestiones</a>
+            <a href="./tickets.html" class="nav-item"><span>⚑</span>Tickets</a>
+            <a href="./comandos.html" class="nav-item"><span>⌘</span>Comandos</a>
+            <a href="./precios.html" class="nav-item active"><span>$</span>Tabla de precios</a>
+            <a href="./manuales.html" class="nav-item"><span>◫</span>Manuales</a>
+        </nav>
+        <div class="sidebar-footer"><button id="logoutButton" class="logout-button">Cerrar sesión</button></div>
+    </aside>
+    <main class="main-content">
+        <header class="topbar">
+            <div><p class="eyebrow">Herramientas para asesores</p><h1>Tabla de precios</h1></div>
+            <div class="user-area"><div class="user-info"><strong id="userName">Usuario</strong><span id="userRole">Cargando...</span></div><div id="userAvatar" class="user-avatar">U</div></div>
+        </header>
+        <section class="prices-content">
+            <div class="prices-hero">
+                <div><p class="eyebrow">Consulta comercial</p><h2>Encuentra el precio correcto en segundos</h2><p>Busca por producto, referencia o categoría. Los precios se muestran en pesos colombianos.</p></div>
+                <div class="price-source"><strong>Lista vigente cargada</strong><span>Revisa las condiciones antes de cotizar.</span></div>
+            </div>
+            <section class="price-controls" aria-label="Filtros de precios">
+                <label class="price-search"><span aria-hidden="true">⌕</span><input id="priceSearch" type="search" placeholder="Buscar GPS, cámara, plataforma, accesorio..." autocomplete="off"></label>
+                <select id="categoryFilter" aria-label="Filtrar por categoría"><option value="">Todas las categorías</option></select>
+                <select id="priceFilter" aria-label="Filtrar por tipo de precio"><option value="">Todos los precios</option><option value="wholesale">Con precio mayorista</option><option value="install">Listos para instalar</option></select>
+            </section>
+            <div class="price-summary"><strong id="resultsCount">0 productos</strong><span id="activeFilterText">Catálogo completo</span></div>
+            <div id="priceGrid" class="price-grid" aria-live="polite"></div>
+            <div id="emptyPrices" class="empty-prices" hidden><div>⌕</div><h3>No encontramos productos</h3><p>Prueba otro nombre, referencia o categoría.</p></div>
+            <p class="price-disclaimer">Los valores se transcribieron de la lista suministrada. GPS: precios sin IVA. Confirma disponibilidad, licencias, configuraciones y condiciones especiales antes de cerrar una venta.</p>
+        </section>
+    </main>
+</div>
+<script type="module" src="./js/precios.js"></script>
+</body>
+</html>

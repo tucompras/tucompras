@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reportes administrativos de gestiones del CRM">
+    <title>Reportes | CRM</title>
+
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/reportes.css?v=2">
+    <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body>
+<div class="app-shell">
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-logo">
+                <img src="./assets/img/logo-tucompras-icon.png" alt="Tu Compras" class="brand-logo-img">
+            </div>
+            <div class="brand-copy">
+                <strong>Gestión</strong>
+                <span>CRM Empresa</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="./dashboard.html" class="nav-item"><span>▦</span>Dashboard</a>
+            <a href="./clientes.html" class="nav-item"><span>♙</span>Clientes</a>
+            <a href="./gestiones.html" class="nav-item"><span>✓</span>Gestiones</a>
+            <a href="./tickets.html" class="nav-item"><span>⚑</span>Tickets</a>
+            <a href="#" class="nav-item" data-coming-soon="Ventas"><span>$</span>Ventas</a>
+            <a href="#" class="nav-item" data-coming-soon="Seguimientos"><span>◷</span>Seguimientos</a>
+            <a href="./reportes.html" class="nav-item active"><span>▥</span>Reportes</a>
+            <a href="./usuarios.html" class="nav-item" id="usersMenuItem"><span>⚙️</span>Usuarios</a>
+            <a href="#" class="nav-item" data-coming-soon="Chat"><span>💬</span>Chat</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-mini-card">
+                <div id="userAvatar" class="user-avatar">AD</div>
+                <div class="user-mini-info">
+                    <strong id="userName">Cargando...</strong>
+                    <span id="userRole">Administrador</span>
+                </div>
+            </div>
+            <button type="button" id="logoutButton" class="logout-button">Cerrar sesión</button>
+        </div>
+    </aside>
+
+    <main class="main-content reportes-page">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">Control administrativo</p>
+                <h1>Reportes</h1>
+            </div>
+            <div class="user-area">
+                <div class="user-info">
+                    <strong id="userNameTop">Administrador</strong>
+                    <span id="userRoleTop">Administrador</span>
+                </div>
+                <div id="userAvatarTop" class="user-avatar">AD</div>
+            </div>
+        </header>
+
+        <div id="pageMessage" class="page-message hidden" role="alert"></div>
+
+        <section class="report-hero">
+            <div class="hero-copy">
+                <span class="hero-kicker">ANÁLISIS DE OPERACIÓN</span>
+                <h2>Gestiones por asesor</h2>
+                <p>Consulta la actividad del equipo, filtra por periodo y asesor, analiza resultados y exporta el detalle para trabajo administrativo.</p>
+            </div>
+            <div class="hero-actions">
+                <button type="button" id="refreshButton" class="btn btn-secondary">↻ Actualizar</button>
+                <button type="button" id="exportExcelButton" class="btn btn-primary">⬇ Excel</button>
+                <button type="button" id="exportCsvButton" class="btn btn-secondary">⬇ CSV</button>
+            </div>
+        </section>
+
+        <section class="quick-range-row">
+            <button type="button" class="range-chip" data-range="today">Hoy</button>
+            <button type="button" class="range-chip" data-range="7">Últimos 7 días</button>
+            <button type="button" class="range-chip active" data-range="30">Últimos 30 días</button>
+            <button type="button" class="range-chip" data-range="month">Este mes</button>
+            <button type="button" class="range-chip" data-range="all">Todo</button>
+        </section>
+
+        <section class="report-filters panel">
+            <div class="panel-header compact">
+                <div>
+                    <p class="eyebrow">Filtros</p>
+                    <h3>Definir qué quieres analizar</h3>
+                </div>
+                <button type="button" id="clearFiltersButton" class="btn btn-link">Limpiar</button>
+            </div>
+
+            <div class="report-filter-grid">
+                <div class="field">
+                    <label for="dateFrom">Desde</label>
+                    <input type="date" id="dateFrom" class="form-control">
+                </div>
+                <div class="field">
+                    <label for="dateTo">Hasta</label>
+                    <input type="date" id="dateTo" class="form-control">
+                </div>
+                <div class="field field-wide">
+                    <label for="advisorFilter">Asesor</label>
+                    <select id="advisorFilter" class="form-control">
+                        <option value="">Todos los asesores</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="typeFilter">Tipo de gestión</label>
+                    <select id="typeFilter" class="form-control">
+                        <option value="">Todos los tipos</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="resultFilter">Resultado</label>
+                    <select id="resultFilter" class="form-control">
+                        <option value="">Todos los resultados</option>
+                    </select>
+                </div>
+                <div class="field field-wide">
+                    <label for="searchFilter">Buscar</label>
+                    <input type="search" id="searchFilter" class="form-control" placeholder="Cliente, empresa, asesor o descripción..." autocomplete="off">
+                </div>
+            </div>
+        </section>
+
+        <section class="kpi-grid">
+            <article class="report-kpi-card kpi-main">
+                <div class="kpi-top"><span>Gestiones filtradas</span><span class="kpi-icon">✓</span></div>
+                <strong id="kpiTotal">0</strong>
+                <small id="kpiTotalHint">—</small>
+            </article>
+            <article class="report-kpi-card">
+                <div class="kpi-top"><span>Asesores con actividad</span><span class="kpi-icon">◈</span></div>
+                <strong id="kpiAdvisors">0</strong>
+                <small>Dentro del filtro actual</small>
+            </article>
+            <article class="report-kpi-card">
+                <div class="kpi-top"><span>Clientes atendidos</span><span class="kpi-icon">♙</span></div>
+                <strong id="kpiClients">0</strong>
+                <small>Clientes únicos</small>
+            </article>
+            <article class="report-kpi-card">
+                <div class="kpi-top"><span>Seguimientos</span><span class="kpi-icon">◷</span></div>
+                <strong id="kpiFollowups">0</strong>
+                <small>Con próxima fecha registrada</small>
+            </article>
+        </section>
+
+        <section class="charts-grid">
+            <article class="panel chart-panel chart-wide">
+                <div class="panel-header compact">
+                    <div>
+                        <p class="eyebrow">Comparativo</p>
+                        <h3>Gestiones por asesor</h3>
+                    </div>
+                    <span id="advisorChartHint" class="chart-hint">Todos los asesores</span>
+                </div>
+                <div class="chart-wrap chart-advisors"><canvas id="advisorChart"></canvas></div>
+            </article>
+
+            <article class="panel chart-panel">
+                <div class="panel-header compact">
+                    <div>
+                        <p class="eyebrow">Distribución</p>
+                        <h3>Tipos de gestión</h3>
+                    </div>
+                </div>
+                <div class="chart-wrap"><canvas id="typeChart"></canvas></div>
+            </article>
+
+            <article class="panel chart-panel">
+                <div class="panel-header compact">
+                    <div>
+                        <p class="eyebrow">Resultados</p>
+                        <h3>Resultados</h3>
+                    </div>
+                </div>
+                <div class="chart-wrap"><canvas id="resultChart"></canvas></div>
+            </article>
+
+            <article class="panel chart-panel chart-wide">
+                <div class="panel-header compact">
+                    <div>
+                        <p class="eyebrow">Tendencia</p>
+                        <h3>Actividad por fecha</h3>
+                    </div>
+                </div>
+                <div class="chart-wrap chart-line"><canvas id="trendChart"></canvas></div>
+            </article>
+        </section>
+
+        <section class="panel advisor-section">
+            <div class="panel-header">
+                <div>
+                    <p class="eyebrow">Detalle individual</p>
+                    <h3>Todos los asesores registrados</h3>
+                    <span id="detailCount" class="panel-subtitle">0 asesores</span>
+                </div>
+            </div>
+            <div id="advisorCards" class="advisor-cards"></div>
+        </section>
+
+        <section class="panel table-section">
+            <div class="panel-header">
+                <div>
+                    <p class="eyebrow">Base filtrada</p>
+                    <h3>Detalle de gestiones</h3>
+                    <span id="tableCount" class="panel-subtitle">0 registros</span>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="data-table report-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Asesor</th>
+                            <th>Cliente</th>
+                            <th>Tipo</th>
+                            <th>Resultado</th>
+                            <th>Descripción</th>
+                            <th>Próximo seguimiento</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reportTableBody">
+                        <tr><td colspan="7" class="table-empty">Cargando reportes...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script type="module" src="./js/reportes.js?v=2"></script>
+</body>
+</html>

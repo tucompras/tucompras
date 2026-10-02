@@ -307,3 +307,10 @@
     .admin-tab { white-space: nowrap; }
     .admin-modal-overlay { padding: 10px; }
 }
+
+/* Identidad Tu Compras */
+.admin-header-badge { border-color: #efd062; background: #fff6cc; color: #5f4d00; }
+.admin-header-badge span, .section-eyebrow, .admin-tab:hover, .admin-tab.active { color: #8a6c00; }
+.admin-tab.active { border-bottom-color: var(--color-accent); }
+.admin-stat-card, .admin-section { border-color: #e6e2d6; box-shadow: var(--shadow-sm); }
+.admin-stat-icon, .role-pill { background: #fff6cc; color: #6d5600; }

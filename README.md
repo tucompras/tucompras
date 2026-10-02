@@ -22,6 +22,8 @@ Sistema interno de gestión comercial y soporte.
 - Seguimientos
 - Documentos
 - Reportes
+- Tabla de precios con búsqueda y escalas mayoristas
+- Manuales para asesores
 
 ## Estructura
 

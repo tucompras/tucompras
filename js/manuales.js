@@ -1,0 +1,5 @@
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+import { auth, db } from "./firebase-config.js";
+onAuthStateChanged(auth, async user => { if (!user) return window.location.href = "./login.html"; try { const snapshot = await getDoc(doc(db,"usuarios",user.uid)); if (!snapshot.exists()) throw new Error("Perfil no encontrado"); const profile = snapshot.data(); if (profile.estado && profile.estado !== "activo") throw new Error("Usuario inactivo"); document.getElementById("userName").textContent = profile.nombre || user.email; document.getElementById("userRole").textContent = (profile.rol || "Usuario").replaceAll("_"," "); document.getElementById("userAvatar").textContent = (profile.nombre || user.email || "U").trim().charAt(0).toUpperCase(); } catch { await signOut(auth); window.location.href = "./login.html"; } });
+document.getElementById("logoutButton").addEventListener("click", async () => { await signOut(auth); window.location.href = "./login.html"; });

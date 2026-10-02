@@ -781,15 +781,16 @@
 }
 
 .brand-logo-wrap {
-    width: 46px;
-    height: 46px;
-    flex: 0 0 46px;
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     border-radius: 12px;
-    background: #2563eb;
+    border: 2px solid var(--color-accent);
+    background: #000;
 }
 
 .brand-logo-image {
@@ -801,7 +802,7 @@
 
 .sidebar-brand strong {
     display: block;
-    color: var(--text-primary);
+    color: #ffffff;
     font-size: 15px;
     line-height: 1.25;
 }
@@ -809,7 +810,7 @@
 .sidebar-brand small {
     display: block;
     margin-top: 4px;
-    color: var(--text-secondary);
+    color: #d1d1d1;
     font-size: 11px;
     line-height: 1.2;
 }

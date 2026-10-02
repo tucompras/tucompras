@@ -4,9 +4,9 @@
    ========================================================= */
 
 :root {
-    --cmd-blue: #2563eb;
-    --cmd-blue-dark: #1d4ed8;
-    --cmd-blue-soft: #eff6ff;
+    --cmd-blue: #111111;
+    --cmd-blue-dark: #000000;
+    --cmd-blue-soft: #fff6cc;
     --cmd-green: #16a34a;
     --cmd-green-soft: #ecfdf3;
     --cmd-yellow: #d97706;
