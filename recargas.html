@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Acceso al módulo de recargas de TuCompras GPS">
+    <title>Recargas | TuCompras GPS</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/access-modules.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body>
+<div class="app">
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand"><img src="./assets/img/logo-tucompras-icon.png?v=2" alt="Tu Compras" class="brand-logo"></div>
+            <span>Gestión</span>
+        </div>
+        <nav class="sidebar-nav" id="sidebarNav">
+            <a href="./dashboard.html" id="dashboardMenuItem" class="nav-item"><span>▦</span>Dashboard</a>
+            <a href="./clientes.html" id="clientsMenuItem" class="nav-item"><span>♙</span>Clientes</a>
+            <a href="./gestiones.html" id="gestionesMenuItem" class="nav-item"><span>✓</span>Gestiones</a>
+            <a href="./tickets.html" id="ticketsMenuItem" class="nav-item"><span>⚑</span>Tickets</a>
+            <a href="#" id="ventasMenuItem" class="nav-item" data-coming-soon="Ventas"><span>$</span>Ventas</a>
+            <a href="./sims.html" id="simsMenuItem" class="nav-item"><span>▤</span>SIMS</a>
+            <a href="./recargas.html" id="recargasMenuItem" class="nav-item active"><span>↻</span>Recargas</a>
+            <a href="./precios.html" id="preciosMenuItem" class="nav-item"><span>$</span>Tabla de precios</a>
+            <a href="./comandos.html" id="comandosMenuItem" class="nav-item"><span>⌘</span>Comandos</a>
+            <a href="./manuales.html" id="manualesMenuItem" class="nav-item"><span>◫</span>Manuales</a>
+            <a href="#" id="chatMenuItem" class="nav-item" data-coming-soon="Chat"><span>💬</span>Chat</a>
+            <a href="./reportes.html" id="reportesMenuItem" class="nav-item"><span>▥</span>Reportes</a>
+            <a href="./usuarios.html" id="usersMenuItem" class="nav-item"><span>⚙️</span>Usuarios</a>
+        </nav>
+        <div class="sidebar-footer">
+            <button id="logoutButton" class="logout-button">Cerrar sesión</button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">TuCompras GPS · Plataforma</p>
+                <h1>Recargas</h1>
+            </div>
+            <div class="user-area">
+                <div class="user-info"><strong id="userName">Usuario</strong><span id="userRole">Cargando...</span></div>
+                <div id="userAvatar" class="user-avatar">U</div>
+            </div>
+        </header>
+
+        <section class="access-content">
+            <div class="access-shell">
+                <div class="access-grid"></div>
+                <div class="access-orbit" aria-hidden="true">
+                    <div class="access-ring"></div>
+                    <div class="access-ring ring-two"></div>
+                    <div class="access-card one"><span class="access-card-icon">1</span><div><strong>Selecciona</strong><small>Identifica el cliente y la SIM</small></div></div>
+                    <div class="access-card two"><span class="access-card-icon">2</span><div><strong>Configura</strong><small>Elige el plan o periodo de recarga</small></div></div>
+                    <div class="access-card three"><span class="access-card-icon">3</span><div><strong>Confirma</strong><small>Revisa los datos antes de continuar</small></div></div>
+                    <div class="access-card four"><span class="access-card-icon">4</span><div><strong>Gestiona</strong><small>Envía la solicitud y consulta su estado</small></div></div>
+                </div>
+
+                <div class="access-copy">
+                    <span class="access-badge"><span class="access-badge-dot"></span> Flujo de recarga</span>
+                    <h2>Recargar será un proceso simple y guiado</h2>
+                    <p>En este módulo tendrás un recorrido pensado para que la gestión sea clara: <strong>seleccionar, configurar, confirmar y dar seguimiento</strong> a cada recarga.</p>
+                    <a class="access-action" href="https://tucomprasgps.duckdns.org/recargas/" target="_blank" rel="noopener noreferrer"><span>Entrar al módulo de recargas →</span></a>
+                    <p class="access-note">Se abrirá la plataforma de recargas en una nueva pestaña.</p>
+
+                    <div class="access-step-list" aria-label="Pasos del proceso de recarga">
+                        <div class="access-step"><span class="access-step-number">01</span><strong>Selecciona</strong><span>Cliente y SIM que deseas gestionar.</span></div>
+                        <div class="access-step"><span class="access-step-number">02</span><strong>Configura</strong><span>Plan, periodo y datos de la recarga.</span></div>
+                        <div class="access-step"><span class="access-step-number">03</span><strong>Confirma</strong><span>Comprueba la información antes de enviarla.</span></div>
+                        <div class="access-step"><span class="access-step-number">04</span><strong>Seguimiento</strong><span>Consulta el resultado de la solicitud.</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+<script type="module" src="./js/menu.js?v=1"></script>
+<script type="module" src="./js/access-modules.js?v=1"></script>
+</body>
+</html>

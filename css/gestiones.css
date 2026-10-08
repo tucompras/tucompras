@@ -1046,3 +1046,105 @@ body.modal-open {
         width: auto;
     }
 }
+
+/* ============================================================
+   AJUSTE VISUAL — GESTIONES
+   Solo presentación del encabezado. No modifica funciones.
+============================================================ */
+
+.gestiones-page > .page-header {
+    position: relative;
+    min-height: 144px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 24px 24px;
+    padding: 24px 150px 24px 32px;
+    box-sizing: border-box;
+    background: linear-gradient(180deg, #ffffff 0%, #fbfcfd 100%);
+    border: 1px solid #e2e7ee;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, .055);
+}
+
+.gestiones-page > .page-header > div:first-child {
+    width: 100%;
+    text-align: center;
+}
+
+.gestiones-page .page-breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    min-height: 26px;
+    margin-bottom: 8px;
+    padding: 0 10px;
+    border: 1px solid #e7d98f;
+    border-radius: 999px;
+    background: #fffbea;
+    color: #806500;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.gestiones-page > .page-header h1 {
+    margin: 0;
+    color: #101828;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: clamp(30px, 3vw, 38px);
+    font-weight: 850;
+    letter-spacing: -.035em;
+    line-height: 1.08;
+}
+
+.gestiones-page > .page-header p:not(.page-breadcrumb) {
+    max-width: 720px;
+    margin: 9px auto 0;
+    color: #596579;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.55;
+}
+
+.gestiones-page .page-header-actions {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+}
+
+.gestiones-page #refreshGestionesButton {
+    min-height: 44px;
+    padding: 0 17px;
+    border: 1px solid #d8dee7;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #263244;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    box-shadow: 0 5px 14px rgba(15, 23, 42, .065);
+    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.gestiones-page #refreshGestionesButton:hover {
+    border-color: #c9b66a;
+    background: #fffdf6;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, .09);
+}
+
+@media (max-width: 760px) {
+    .gestiones-page > .page-header {
+        min-height: auto;
+        margin: 16px;
+        padding: 24px 20px 86px;
+    }
+
+    .gestiones-page .page-header-actions {
+        top: auto;
+        right: 20px;
+        bottom: 20px;
+    }
+}

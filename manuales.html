@@ -16,14 +16,20 @@
 <div class="app">
     <aside class="sidebar">
         <div class="sidebar-brand"><div class="brand"><img src="./assets/img/logo-tucompras-icon.png?v=2" alt="Tu Compras" class="brand-logo"></div><span>Gestión</span></div>
-        <nav class="sidebar-nav">
-            <a href="./dashboard.html" class="nav-item"><span>▦</span>Dashboard</a>
-            <a href="./clientes.html" class="nav-item"><span>♙</span>Clientes</a>
-            <a href="./gestiones.html" class="nav-item"><span>✓</span>Gestiones</a>
-            <a href="./tickets.html" class="nav-item"><span>⚑</span>Tickets</a>
-            <a href="./comandos.html" class="nav-item"><span>⌘</span>Comandos</a>
-            <a href="./precios.html" class="nav-item"><span>$</span>Tabla de precios</a>
-            <a href="./manuales.html" class="nav-item active"><span>◫</span>Manuales</a>
+        <nav class="sidebar-nav" id="sidebarNav">
+            <a href="./dashboard.html" id="dashboardMenuItem" class="nav-item"><span>▦</span>Dashboard</a>
+            <a href="./clientes.html" id="clientsMenuItem" class="nav-item"><span>♙</span>Clientes</a>
+            <a href="./gestiones.html" id="gestionesMenuItem" class="nav-item"><span>✓</span>Gestiones</a>
+            <a href="./tickets.html" id="ticketsMenuItem" class="nav-item"><span>⚑</span>Tickets</a>
+            <a href="#" id="ventasMenuItem" class="nav-item" data-coming-soon="Ventas"><span>$</span>Ventas</a>
+            <a href="./sims.html" id="simsMenuItem" class="nav-item"><span>▤</span>SIMS</a>
+            <a href="./recargas.html" id="recargasMenuItem" class="nav-item"><span>↻</span>Recargas</a>
+            <a href="./precios.html" id="preciosMenuItem" class="nav-item"><span>$</span>Tabla de precios</a>
+            <a href="./comandos.html" id="comandosMenuItem" class="nav-item"><span>⌘</span>Comandos</a>
+            <a href="./manuales.html" id="manualesMenuItem" class="nav-item active"><span>◫</span>Manuales</a>
+            <a href="#" id="chatMenuItem" class="nav-item" data-coming-soon="Chat"><span>💬</span>Chat</a>
+            <a href="./reportes.html" id="reportesMenuItem" class="nav-item"><span>▥</span>Reportes</a>
+            <a href="./usuarios.html" id="usersMenuItem" class="nav-item"><span>⚙️</span>Usuarios</a>
         </nav>
         <div class="sidebar-footer"><button id="logoutButton" class="logout-button">Cerrar sesión</button></div>
     </aside>
@@ -40,6 +46,7 @@
         </section>
     </main>
 </div>
-<script type="module" src="./js/manuales.js"></script>
+<script type="module" src="./js/menu.js?v=1"></script>
+    <script type="module" src="./js/manuales.js"></script>
 </body>
 </html>
